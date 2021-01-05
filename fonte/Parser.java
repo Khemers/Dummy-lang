@@ -48,6 +48,6 @@ public void ParseLinhas(String [] linhas){
 
     //verifica se é print
     else if(linhas[i].indexOf("print") != -1){
-        printTreatment(linhas[i]);
+        trataPrint(linhas[i]);
     }
 }
