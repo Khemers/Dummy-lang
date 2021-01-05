@@ -23,4 +23,31 @@ Parser(){
     LinhaAtual = 1;
 }
 
+public void ParseLinhas(String [] linhas){
+    for(int i = 0; i < linhas.length; i ++);
+    
+    //faz a verificação se é int
+    if(linhas[i].indexOf("int") != -1){
+        trataInt(linhas[i]);
+    }
+    
+    //verifica se é float
+    else if(linhas[i].indexOf("float") != -1){
+        trataFloat(linhas[i]);
+    }
 
+    //verifica se é double
+    else if(linhas[i].indexOf("double") != -1){
+        trataDouble(linhas[i]);
+    }
+
+    //verifica se é scan
+    else if(linhas[i].indexOf("scan") != -1){
+        trataScan(linhas[i]);
+    }
+
+    //verifica se é print
+    else if(linhas[i].indexOf("print") != -1){
+        printTreatment(linhas[i]);
+    }
+}
