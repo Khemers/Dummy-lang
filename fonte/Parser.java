@@ -8,22 +8,12 @@ public class Parser {
     public static int currentLine;
     protected Map<String, Variable> variables;
 
-    public static void main(String[] args) {
-        String[] oi = new String[2];
-
-        oi[0] = "int a = 5";
-        oi[1] = "a --";
-
-        Parser alo = new Parser();
-        alo.parseLines(oi);
-        alo.printVariables();
-    }
-
     Parser(){
         this.variables = new HashMap<>();
         currentLine = 1;
     }
 
+    // Verifica cada linha e aplica o devido
     public void parseLines(String[] lines){
         for (int i = 0; i < lines.length ; i++) {
 
@@ -416,7 +406,6 @@ public class Parser {
         Variable search = this.variables.get(preOperator[0]);
         if(search == null){
             System.out.println("Variavel não encontrada!");
-            return;
         }
 
         else{
@@ -440,11 +429,4 @@ public class Parser {
         }
     }
 
-    private void printVariables(){
-        System.out.println(" Variáveis ");
-        for (String key : variables.keySet()) {
-            Variable variable = variables.get(key);
-            System.out.println("Nome: "+key+" | Valor: "+variable.getValue()+" | Tipo: "+variable.type);
-        }
-    }
 }
