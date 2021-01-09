@@ -1,12 +1,12 @@
-public class VariableDouble extends Variable{
+public class VariableDouble extends Variable {
     public double value;
 
-    VariableDouble(String name, double value){
+    VariableDouble(String name, double value) {
         this.type = "double";
         this.name = name;
         this.value = value;
     }
-    VariableDouble(String name){
+    VariableDouble(String name) {
         this.type= "double";
         this.name= name;
         this.value= 0;

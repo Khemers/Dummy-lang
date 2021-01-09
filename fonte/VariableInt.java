@@ -1,12 +1,12 @@
 public class VariableInt extends Variable {
     public int value;
 
-    VariableInt(String name, int value){
+    VariableInt(String name, int value) {
         this.type = "int";
         this.name = name;
         this.value = value;
     }
-    VariableInt(String name){
+    VariableInt(String name) {
         this.type = "int";
         this.name = name;
         this.value = 0;

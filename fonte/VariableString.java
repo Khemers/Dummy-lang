@@ -1,19 +1,19 @@
-public class VariableString extends Variable{
+public class VariableString extends Variable {
     public String value;
 
-    VariableString(String name, String value){
+    VariableString(String name, String value) {
         this.type = "string";
         this.name = name;
         this.value = value;
     }
-    VariableString(String name){
+    VariableString(String name) {
         this.type = "string";
         this.name = name;
         this.value = null;
     }
 
     @Override
-    public String getValue(){
+    public String getValue() {
         return this.value;
     }
 

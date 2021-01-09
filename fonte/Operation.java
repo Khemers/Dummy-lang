@@ -57,7 +57,7 @@ public class Operation {
             }
         }
 
-        if(content.indexOf("+") != -1 || content.indexOf("-") != -1 || content.indexOf("*") != -1 || content.indexOf("/") != -1 || content.indexOf("%") != -1){
+        if (content.contains("+") || content.contains("-") || content.contains("*") || content.contains("/") || content.contains("%")) {
             for(int i = 0; i < values.length; i++){
                 if(values[i].equals("*")){
                     values[i+1] = Operation.variableReplacement(values[i+1], variables);
@@ -115,92 +115,90 @@ public class Operation {
                 }
             }
         }
+
         values[0] = Operation.variableReplacement(values[0], variables);
-        if(type.equals("float")){
+        if (type.equals("float")) {
             result = Float.parseFloat(values[0]);
         }
-        if(type.equals("int")){
+        if (type.equals("int")) {
             result = Integer.parseInt(values[0]);
         }
-        if(type.equals("double")){
+        if (type.equals("double")) {
             result = Double.parseDouble(values[0]);
         }
-
-
 
         return result;
     }
 
+    // Math Operations
     public static Object sum(String[] values, String type, int pos1, int pos2){
-        if(type.equals("float")){
-            return Float.parseFloat(values[pos1]) + Float.parseFloat(values[pos2]);
-        }
-        if(type.equals("int")){
+        if (type.equals("int")) {
             return Integer.parseInt(values[pos1]) + Integer.parseInt(values[pos2]);
         }
-        if(type.equals("double")){
+        if (type.equals("float")) {
+            return Float.parseFloat(values[pos1]) + Float.parseFloat(values[pos2]);
+        }
+        if (type.equals("double")) {
             return Double.parseDouble(values[pos1]) + Double.parseDouble(values[pos2]);
         }
         return 0;
     }
 
     public static Object sub(String[] values, String type, int pos1, int pos2){
-        if(type.equals("float")){
-            return Float.parseFloat(values[pos1]) - Float.parseFloat(values[pos2]);
-        }
-        if(type.equals("int")){
+        if (type.equals("int")){
             return Integer.parseInt(values[pos1]) - Integer.parseInt(values[pos2]);
         }
-        if(type.equals("double")){
+        if (type.equals("float")){
+            return Float.parseFloat(values[pos1]) - Float.parseFloat(values[pos2]);
+        }
+        if (type.equals("double")) {
             return Double.parseDouble(values[pos1]) - Double.parseDouble(values[pos2]);
         }
         return 0;
     }
 
     public static Object mult(String[] values, String type, int pos1, int pos2){
-        if(type.equals("float")){
-            return Float.parseFloat(values[pos1]) * Float.parseFloat(values[pos2]);
-        }
-        if(type.equals("int")){
+        if (type.equals("int")) {
             return Integer.parseInt(values[pos1]) * Integer.parseInt(values[pos2]);
         }
-        if(type.equals("double")){
+        if (type.equals("float")) {
+            return Float.parseFloat(values[pos1]) * Float.parseFloat(values[pos2]);
+        }
+        if (type.equals("double")) {
             return Double.parseDouble(values[pos1]) * Double.parseDouble(values[pos2]);
         }
         return 0;
     }
 
     public static Object div(String[] values, String type, int pos1, int pos2){
-        if(type.equals("float")){
-            return Float.parseFloat(values[pos1]) / Float.parseFloat(values[pos2]);
-        }
-        if(type.equals("int")){
+        if (type.equals("int")) {
             return Integer.parseInt(values[pos1]) / Integer.parseInt(values[pos2]);
         }
-        if(type.equals("double")){
+        if (type.equals("float")) {
+            return Float.parseFloat(values[pos1]) / Float.parseFloat(values[pos2]);
+        }
+        if (type.equals("double")) {
             return Double.parseDouble(values[pos1]) / Double.parseDouble(values[pos2]);
         }
         return 0;
     }
 
     public static Object mod(String[] values, String type, int pos1, int pos2){
-        if(type.equals("float")){
-            float result = Float.parseFloat(values[pos1]) % Float.parseFloat(values[pos2]);
-            return result;
+        if (type.equals("int")) {
+            return Integer.parseInt(values[pos1]) % Integer.parseInt(values[pos2]);
         }
-        if(type.equals("int")){
-            int result = Integer.parseInt(values[pos1]) % Integer.parseInt(values[pos2]);
-            return result;
+        if (type.equals("float")) {
+            return Float.parseFloat(values[pos1]) % Float.parseFloat(values[pos2]);
         }
-        if(type.equals("double")){
-            double result = Double.parseDouble(values[pos1]) % Double.parseDouble(values[pos2]);
-            return result;
+        if (type.equals("double")) {
+            return Double.parseDouble(values[pos1]) % Double.parseDouble(values[pos2]);
         }
         return 0;
     }
+
     public static String concatString(String inQuotes){
         String concatenada="";
-        String splitQuotes[] = inQuotes.split("'");
+        String[] splitQuotes = inQuotes.split("'");
         for(int i=1;i<=splitQuotes.length-1;i+=2){
             concatenada= concatenada.concat(splitQuotes[i]);
             concatenada= concatenada.concat(" ");
@@ -219,7 +217,7 @@ public class Operation {
             return STRcomplete;
         }
         else{
-            String splitQuotes[] = inQuotes.split("'");
+            String[] splitQuotes = inQuotes.split("'");
             return splitQuotes[1];
         }
     }
@@ -227,7 +225,7 @@ public class Operation {
         if (variables.containsKey(operand)){
             return variables.get(operand).getValue().toString();
         } else if(!Pattern.compile("^[\\-]{0,1}[0-9]*[.]{0,1}[0-9]+$").matcher(operand).find()){
-            System.out.println("Variável não encontrada "+operand);
+            System.out.println("Variavel não encontrada "+operand);
             System.exit(0);
         }
         return operand;

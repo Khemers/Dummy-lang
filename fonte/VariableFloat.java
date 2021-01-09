@@ -1,12 +1,12 @@
 public class VariableFloat extends Variable {
     public float value;
 
-    VariableFloat(String name, float value){
+    VariableFloat(String name, float value) {
         this.type = "float";
         this.name = name;
         this.value = value;
     }
-    VariableFloat(String name){
+    VariableFloat(String name) {
         this.type = "float";
         this.name = name;
         this.value = 0;
