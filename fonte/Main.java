@@ -13,6 +13,8 @@ public class Main {
             code.append("\n");
         }
 
+        Parser p = new Parser(code);
+
         System.out.println(code);
 
     }

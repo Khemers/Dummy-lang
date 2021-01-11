@@ -3,13 +3,13 @@
 
 public class Parser {
 
-    public String codigoFonte;
+    public StringBuilder codigoFonte;
  
-    public Parser(String codigoFonte) {
+    public Parser(StringBuilder codigoFonte) {
         setCodigoFonte(codigoFonte);
     }
 
-    public void setCodigoFonte(String codigoFonte) {
+    public void setCodigoFonte(StringBuilder codigoFonte) {
         this.codigoFonte = codigoFonte;
     }
 }
