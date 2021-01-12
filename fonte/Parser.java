@@ -80,7 +80,7 @@ public class Parser {
 
         arr = line.split(" ");
         try {
-            String = new VString(arr[1], arr[3]);
+            String = new VString(arr[1], arr[3].replace('"', Character.MIN_VALUE));
         } catch (ArrayIndexOutOfBoundsException e) {
             String = new VString(arr[1]);
         }
