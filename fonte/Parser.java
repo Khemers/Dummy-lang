@@ -19,19 +19,19 @@ public class Parser {
     }
 
     public void parseLines(String[] lines) {
-        for (int i = 0; i < lines.length; i++) {
+        for (String line : lines) {
 
-            if (Pattern.compile("^\\s*int\\s").matcher(lines[i]).find()) {
-                foundInt(lines[i]);
+            if (Pattern.compile("^\\s*int\\s").matcher(line).find()) {
+                foundInt(line);
             }
-            if (Pattern.compile("^\\s*float\\s").matcher(lines[i]).find()) {
-                foundFloat(lines[i]);
+            if (Pattern.compile("^\\s*float\\s").matcher(line).find()) {
+                foundFloat(line);
             }
-            if (Pattern.compile("^\\s*double\\s").matcher(lines[i]).find()) {
-                foundDouble(lines[i]);
+            if (Pattern.compile("^\\s*double\\s").matcher(line).find()) {
+                foundDouble(line);
             }
-            if (Pattern.compile("^\\s*string\\s").matcher(lines[i]).find()) {
-                foundString(lines[i]);
+            if (Pattern.compile("^\\s*string\\s").matcher(line).find()) {
+                foundString(line);
             }
         }
     }
