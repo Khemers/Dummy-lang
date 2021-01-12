@@ -2,3 +2,4 @@ int a = 0
 float b = 1.5
 double c = 2.5
 string d = "Dummy"
+int a

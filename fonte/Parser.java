@@ -40,16 +40,24 @@ public class Parser {
         VInt Int; String[] arr;
 
         arr = line.split(" ");
-        Int = new VInt(arr[1], parseInt(arr[3]));
+        try {
+            Int = new VInt(arr[1], parseInt(arr[3]));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Int = new VInt(arr[1]);
+        }
 
-        this.Variables.put(Int.name, Int);
+        Variables.put(Int.name, Int);
     }
 
     private void foundFloat(String line) {
         VFloat Float; String[] arr;
 
         arr = line.split(" ");
-        Float = new VFloat(arr[1], parseFloat(arr[3]));
+        try {
+            Float = new VFloat(arr[1], parseFloat(arr[3]));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Float = new VFloat(arr[1]);
+        }
 
         Variables.put(Float.name, Float);
     }
@@ -58,7 +66,11 @@ public class Parser {
         VDouble Double; String[] arr;
 
         arr = line.split(" ");
-        Double = new VDouble(arr[1], parseDouble(arr[3]));
+        try {
+            Double = new VDouble(arr[1], parseDouble(arr[3]));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Double = new VDouble(arr[1]);
+        }
 
         Variables.put(Double.name, Double);
     }
@@ -67,7 +79,11 @@ public class Parser {
         VString String; String[] arr;
 
         arr = line.split(" ");
-        String = new VString(arr[1], arr[3]);
+        try {
+            String = new VString(arr[1], arr[3]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            String = new VString(arr[1]);
+        }
 
         Variables.put(String.name, String);
     }
