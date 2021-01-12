@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 public class Parser {
@@ -20,6 +22,9 @@ public class Parser {
             if (Pattern.compile("^\\s*int\\s").matcher(lines[i]).find()) {
                 foundInt(lines[i]);
             }
+            if (Pattern.compile("^\\s*float\\s").matcher(lines[i]).find()) {
+                foundFloat(lines[i]);
+            }
         }
     }
 
@@ -30,6 +35,15 @@ public class Parser {
         integer = new VInt(arr[1], parseInt(arr[3]));
 
         Variables.put(integer.name, integer);
+    }
+
+    private void foundFloat(String line) {
+        VFloat floating; String[] arr;
+
+        arr = line.split(" ");
+        floating = new VFloat(arr[1], parseFloat(arr[3]));
+
+        Variables.put(floating.name, floating);
     }
 
     public void setCodigoFonte(StringBuilder codigoFonte) {
