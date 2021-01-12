@@ -1,4 +1,4 @@
 int a = 0
-if (a == 0)
-    print ('Hello World!')
-endif
+int b = 1
+int c = 2
+int d = 3
