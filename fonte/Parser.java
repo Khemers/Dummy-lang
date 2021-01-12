@@ -1,13 +1,18 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
-//import java.util.regex.Matcher;
+import static java.lang.Integer.parseInt;
 
 public class Parser {
 
     public String[] codigoFonte;
+    protected Map<String, Variable> Variables;
  
-    public Parser(StringBuilder codigoFonte) {
+    Parser(StringBuilder codigoFonte) {
         setCodigoFonte(codigoFonte);
         parseLines(this.codigoFonte);
+
+        this.Variables = new HashMap<>();
     }
 
     public void parseLines(String[] lines) {
@@ -15,18 +20,19 @@ public class Parser {
             if (Pattern.compile("^\\s*int\\s").matcher(lines[i]).find()) {
                 foundInt(lines[i]);
             }
-            System.out.println(lines[i]);
         }
     }
 
     private void foundInt(String line) {
+        VInt integer; String[] arr;
 
+        arr = line.split(" ");
+        integer = new VInt(arr[1], parseInt(arr[3]));
+
+        Variables.put(integer.name, integer);
     }
 
     public void setCodigoFonte(StringBuilder codigoFonte) {
-        String[] codigo;
-
-        codigo = codigoFonte.toString().split("\n");
-        this.codigoFonte = codigo;
+        this.codigoFonte = codigoFonte.toString().split("\n");
     }
 }
