@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run JAR" type="JarApplication">
-    <option name="JAR_PATH" value="$PROJECT_DIR$/Interpretador Dummy.jar" />
+    <option name="JAR_PATH" value="$PROJECT_DIR$/Dummy.jar" />
     <option name="PROGRAM_PARAMETERS" value="Exemplo.dum" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <method v="2">
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="Interpretador Dummy:jar" />
+        <artifact name="Dummy:jar" />
       </option>
     </method>
   </configuration>

@@ -34,6 +34,9 @@ public class Parser {
             if (Pattern.compile("^\\s*string\\s").matcher(line).find()) {
                 foundString(line);
             }
+            if (Pattern.compile("^\\s*println[\\s]*[(]").matcher(line).find()) {
+                foundPrintLn(line);
+            }
             if (Pattern.compile("^\\s*print[\\s]*[(]").matcher(line).find()) {
                 foundPrint(line);
             }
@@ -93,16 +96,31 @@ public class Parser {
     }
 
     private void foundPrint(String line) {
-        String print = line.replace('(', Character.MIN_VALUE).replaceAll("print", String.valueOf(Character.MIN_VALUE)).replace(')', Character.MIN_VALUE).trim();
+        String print = line.replace('(', Character.MIN_VALUE).replaceAll("print", String.valueOf(Character.MIN_VALUE)).replace(')', Character.MIN_VALUE);
         String[] strings = print.split(",");
 
-        System.out.println(Arrays.toString(strings));
+        for (String string : strings) {
+
+            if (string.contains("'")) {
+                System.out.print(string.replace('\'', Character.MIN_VALUE));
+            } else {
+                System.out.print(Variables.get(string.trim()).getValue());
+            }
+        }
+    }
+
+    private void foundPrintLn(String line) {
+        String print = line.replace('(', Character.MIN_VALUE).replaceAll("println", String.valueOf(Character.MIN_VALUE)).replace(')', Character.MIN_VALUE);
+        String[] strings = print.split(",");
 
         for (String string : strings) {
-            String s = string.trim();
-            System.out.println(Variables.get(s).getValue());
-        }
 
+            if (string.contains("'")) {
+                System.out.println(string.replace('\'', Character.MIN_VALUE));
+            } else {
+                System.out.println(Variables.get(string.trim()).getValue());
+            }
+        }
     }
 
     public void setCodigoFonte(StringBuilder codigoFonte) {
