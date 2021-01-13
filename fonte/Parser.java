@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -32,6 +33,9 @@ public class Parser {
             }
             if (Pattern.compile("^\\s*string\\s").matcher(line).find()) {
                 foundString(line);
+            }
+            if (Pattern.compile("^\\s*print[\\s]*[(]").matcher(line).find()) {
+                foundPrint(line);
             }
         }
     }
@@ -86,6 +90,19 @@ public class Parser {
         }
 
         Variables.put(String.name, String);
+    }
+
+    private void foundPrint(String line) {
+        String print = line.replace('(', Character.MIN_VALUE).replaceAll("print", String.valueOf(Character.MIN_VALUE)).replace(')', Character.MIN_VALUE).trim();
+        String[] strings = print.split(",");
+
+        System.out.println(Arrays.toString(strings));
+
+        for (String string : strings) {
+            String s = string.trim();
+            System.out.println(Variables.get(s).getValue());
+        }
+
     }
 
     public void setCodigoFonte(StringBuilder codigoFonte) {
