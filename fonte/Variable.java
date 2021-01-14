@@ -8,4 +8,6 @@ abstract class Variable {
     abstract Object sum(String i);
 
     abstract void setValue(Object value);
+
+    abstract void setInputValue(Object value);
 }

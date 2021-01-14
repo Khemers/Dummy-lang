@@ -21,7 +21,8 @@ public class VDouble extends Variable {
     public Object sum(String i) { return this.value + Double.parseDouble(i); }
 
     @Override
-    void setValue(Object value) {
-        this.value = (double) value;
-    }
+    void setValue(Object value) { this.value = (double) value; }
+
+    @Override
+    void setInputValue(Object value) { this.value = Double.parseDouble((String) value); }
 }

@@ -21,7 +21,8 @@ public class VString extends Variable {
     public Object sum(String i) { return this.value + i; }
 
     @Override
-    void setValue(Object value) {
-        this.value = (String) value;
-    }
+    void setValue(Object value) { this.value = (String) value; }
+
+    @Override
+    void setInputValue(Object value) { this.value = (String) value; }
 }

@@ -21,7 +21,8 @@ public class VFloat extends Variable {
     public Object sum(String i) { return this.value + Float.parseFloat(i); }
 
     @Override
-    void setValue(Object value) {
-        this.value = (float) value;
-    }
+    void setValue(Object value) { this.value = (float) value; }
+
+    @Override
+    void setInputValue(Object value) { this.value = Float.parseFloat((String) value); }
 }

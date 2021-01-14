@@ -21,7 +21,8 @@ public class VInt extends Variable {
     public Object sum(String i) { return this.value + Integer.parseInt(i); }
 
     @Override
-    void setValue(Object value) {
-        this.value = (int) value;
-    }
+    void setValue(Object value) { this.value = (int) value; }
+
+    @Override
+    void setInputValue(Object value) { this.value = Integer.parseInt((String) value); }
 }

@@ -21,4 +21,11 @@ float c = 2.5
 c = c + 0.5
 println(c)
 string p = 'Hello World'
-print(p)
+println(p)
+print('String Input: ')
+input(p)
+println(p)
+print('Int Input: ')
+int q
+input(q)
+println(q)

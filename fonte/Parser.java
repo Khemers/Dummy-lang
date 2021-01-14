@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import static java.lang.Double.parseDouble;
@@ -33,8 +34,8 @@ public class Parser {
                 foundPrintLn(line);
             } else if (Pattern.compile("^\\s*print[\\s]*[(]").matcher(line).find()) {
                 foundPrint(line);
-            } else if(Pattern.compile("^\\s*if[\\s]*[(]").matcher(line).find()) {
-                foundIf(line);
+            } else if(Pattern.compile("^\\s*input[\\s]*[(]").matcher(line).find()) {
+                foundInput(line);
             } else {
                 foundAssignment(line);
             }
@@ -82,20 +83,29 @@ public class Parser {
 
     private void foundString(String line) {
         VString String; String[] arr;
+        int indexOfEqual = 0;
 
         arr = line.split(" ");
-        try {
-            String = new VString(arr[1], arr[3].replace('"', Character.MIN_VALUE));
-        } catch (ArrayIndexOutOfBoundsException e) {
-            String = new VString(arr[1]);
+
+        for (int i = 0; i <= arr.length; i++) {
+            if (arr[i].equals("=")) {
+                indexOfEqual = i;
+                break;
+            }
         }
 
+        StringBuilder str = new StringBuilder();
+        for (int x = indexOfEqual + 1; x <= arr.length - 1; x++) {
+            str.append(arr[x]).append(" ");
+        }
+        String = new VString(arr[1], str.toString().replace("'", ""));
+
         Variables.put(String.name, String);
-    }
+        }
 
     private void foundPrint(String line) {
-        String print = line.replace('(', Character.MIN_VALUE).replaceAll("print", String.valueOf(Character.MIN_VALUE)).replace(')', Character.MIN_VALUE);
-        String[] strings = print.split(",");
+        line = line.substring(6).replace(')', Character.MIN_VALUE);
+        String[] strings = line.split(",");
 
         for (String string : strings) {
 
@@ -108,8 +118,8 @@ public class Parser {
     }
 
     private void foundPrintLn(String line) {
-        String print = line.replace('(', Character.MIN_VALUE).replaceAll("println", String.valueOf(Character.MIN_VALUE)).replace(')', Character.MIN_VALUE);
-        String[] strings = print.split(",");
+        line = line.substring(8).replace(')', Character.MIN_VALUE);
+        String[] strings = line.split(",");
 
         for (String string : strings) {
 
@@ -142,6 +152,15 @@ public class Parser {
                 Variables.get(s[0]).setValue(Variables.get(s[0]).getValue().toString().replace('\'', Character.MIN_VALUE));
             }
         }
+    }
+
+    private void foundInput(String line) {
+        line = line.substring(6).replace(')', Character.MIN_VALUE);
+
+        Scanner scan = new Scanner(System.in);
+        String input = scan.nextLine();
+
+        Variables.get(line.trim()).setInputValue(input);
     }
     
     public void setCodigoFonte(StringBuilder codigoFonte) {
