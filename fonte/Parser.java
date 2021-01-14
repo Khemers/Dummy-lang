@@ -28,25 +28,25 @@ public class Parser {
         this.Variables.putAll(Variables);
     }
 
-    public void parseLines(String[] lines) {
-        for (String line : lines) {
+    public void parseLines(String[] line) {
+        for (int i = 0; i < line.length ; i++) {
 
-            if (Pattern.compile("^\\s*int\\s").matcher(line).find()) {
-                foundInt(line);
-            } else if (Pattern.compile("^\\s*float\\s").matcher(line).find()) {
-                foundFloat(line);
-            } else if (Pattern.compile("^\\s*double\\s").matcher(line).find()) {
-                foundDouble(line);
-            } else if (Pattern.compile("^\\s*string\\s").matcher(line).find()) {
-                foundString(line);
-            } else if (Pattern.compile("^\\s*println[\\s]*[(]").matcher(line).find()) {
-                foundPrintLn(line);
-            } else if (Pattern.compile("^\\s*print[\\s]*[(]").matcher(line).find()) {
-                foundPrint(line);
-            } else if(Pattern.compile("^\\s*if[\\s]*[(]").matcher(line).find()) {
-                foundIf(line);  
+            if (Pattern.compile("^\\s*int\\s").matcher(line[i]).find()) {
+                foundInt(line[i]);
+            } else if (Pattern.compile("^\\s*float\\s").matcher(line[i]).find()) {
+                foundFloat(line[i]);
+            } else if (Pattern.compile("^\\s*double\\s").matcher(line[i]).find()) {
+                foundDouble(line[i]);
+            } else if (Pattern.compile("^\\s*string\\s").matcher(line[i]).find()) {
+                foundString(line[i]);
+            } else if (Pattern.compile("^\\s*println[\\s]*[(]").matcher(line[i]).find()) {
+                foundPrintLn(line[i]);
+            } else if (Pattern.compile("^\\s*print[\\s]*[(]").matcher(line[i]).find()) {
+                foundPrint(line[i]);
+            } else if(Pattern.compile("^\\s*if[\\s]*[(]").matcher(line[i]).find()) {
+                i = foundIf(line[i], i);  
             } else {
-                foundAssignment(line);
+                foundAssignment(line[i]);
             }
         }
     }
@@ -154,18 +154,37 @@ public class Parser {
         }
     }
     
-    private int foundIf(String[] line, int posicaodaLinha) {
+    private int foundIf(String line[], int positionLine) {
         Parser newParser = new Parser(Variables);
         int contadordeIf = 1;
-        String condition =  conteudoParenteses(line[posicaodaLinha]);
+        String condition =  conteudoParenteses(line[positionLine]);
         String [] parseInsideIf = new String[0];
         String [] parseInsideElse = new String[0];
 
         boolean buscadordeElse = false;
         
         while(contadordeIf > 0){
-            posicaodaLinha++;
+            positionLine++;
         }
+
+        if(!buscadordeElse){
+            parseInsideIf = Util.appendArray(parseInsideIf.length, parseInsideIf, line[positionLine]);
+        }
+        else{
+            parseInsideElse = Util.appendArray(parseInsideElse.length, parseInsideElse, line[positionLine]);
+        }
+        if(Pattern.compile("^\\s*else[\\s]*$").matcher(line[positionLine]).find() && contadordeIf == 1){
+            buscadordeElse = true;
+        }
+        if(Pattern.compile("^\\s*endif[\\s]*$").matcher(line[positionLine]).find()){
+            contadordeIf--;
+        }
+        else if(Pattern.compile("^\\s*if[\\s]*[(]").matcher(line[positionLine]).find()){
+            contadordeIf++;
+        }
+    }
+
+    
 
 
     }
