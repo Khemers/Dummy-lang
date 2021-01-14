@@ -7,6 +7,19 @@ public class Util {
         newArray[newArray.length-1] = newElement;
         return newArray;
     }
+    public static String[] removeArray (int size, String[] Array, int position) {
+        String[] newArray = new String[0];
+        if(position == size-1){
+            size--;
+        }
+        for(int i = 0; i < size; i++){
+            if(i == position){
+                i++;
+            }
+            newArray = appendArray(newArray.length, newArray, Array[i]);
+        }
+        return newArray;
+    }
 }
 
 
