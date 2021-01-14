@@ -30,6 +30,8 @@ public class Parser {
                 foundDouble(line);
             } else if (Pattern.compile("^\\s*string\\s").matcher(line).find()) {
                 foundString(line);
+            } else if (Pattern.compile("^\\s*boolean\\s").matcher(line).find()) {
+                foundBoolean(line);
             } else if (Pattern.compile("^\\s*println[\\s]*[(]").matcher(line).find()) {
                 foundPrintLn(line);
             } else if (Pattern.compile("^\\s*print[\\s]*[(]").matcher(line).find()) {
@@ -101,7 +103,11 @@ public class Parser {
         String = new VString(arr[1], str.toString().replace("'", ""));
 
         Variables.put(String.name, String);
-        }
+    }
+
+    private void foundBoolean(String line) {
+        //TODO
+    }
 
     private void foundPrint(String line) {
         line = line.substring(6).replace(')', Character.MIN_VALUE);
