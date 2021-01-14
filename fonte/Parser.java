@@ -124,7 +124,21 @@ public class Parser {
 
         if (line.contains("=")) {
             s = line.split(" ");
-            Variables.put(s[0], Variables.get(s[2]));
+
+            if (line.contains("+")) {
+                if (Variables.containsKey(s[2]) && Variables.containsKey(s[4])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).sum(Variables.get(s[4]).getValue().toString()));
+                } else if (Variables.containsKey(s[4])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[4]).sum(s[2]));
+                } else if (Variables.containsKey(s[2])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).sum(s[4]));
+                }
+            } else {
+                Variables.get(s[0]).setValue(Variables.get(s[2]).getValue());
+            }
+            if (Variables.get(s[0]).getValue().toString().contains("'")) {
+                Variables.get(s[0]).setValue(Variables.get(s[0]).getValue().toString().replace('\'', Character.MIN_VALUE));
+            }
         }
     }
     
