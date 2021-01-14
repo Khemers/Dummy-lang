@@ -18,9 +18,6 @@ public class VFloat extends Variable {
     }
 
     @Override
-    Object getType() { return this.type; }
-
-    @Override
     public Object sum(String i) { return this.value + Float.parseFloat(i); }
 
     @Override
