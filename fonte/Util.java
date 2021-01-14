@@ -1,4 +1,3 @@
-package fonte;
 import java.util.*;
 
 public class Util {
