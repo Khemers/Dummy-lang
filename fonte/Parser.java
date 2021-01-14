@@ -166,16 +166,16 @@ public class Parser {
         while(contadordeIf > 0){
             posicaodaLinha++;
         }
-        
+
 
     }
 
     private String conteudoParenteses(String line) {
-        int firstParenth = line.indexOf("(");
-        int lastParenth = line.lastIndexOf(")");
+        int primeiroParenteses = line.indexOf("(");
+        int ultimoParenteses = line.lastIndexOf(")");
 
-        String betweenParenthesis = line.substring(firstParenth+1,lastParenth);
-        return betweenParenthesis.replaceAll("\\s+", " ").trim();
+        String entreParenteses = line.substring(primeiroParenteses+1,ultimoParenteses);
+        return entreParenteses.replaceAll("\\s+", " ").trim();
     }
 
     public void setCodigoFonte(StringBuilder codigoFonte) {
