@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -24,21 +23,18 @@ public class Parser {
 
             if (Pattern.compile("^\\s*int\\s").matcher(line).find()) {
                 foundInt(line);
-            }
-            if (Pattern.compile("^\\s*float\\s").matcher(line).find()) {
+            } else if (Pattern.compile("^\\s*float\\s").matcher(line).find()) {
                 foundFloat(line);
-            }
-            if (Pattern.compile("^\\s*double\\s").matcher(line).find()) {
+            } else if (Pattern.compile("^\\s*double\\s").matcher(line).find()) {
                 foundDouble(line);
-            }
-            if (Pattern.compile("^\\s*string\\s").matcher(line).find()) {
+            } else if (Pattern.compile("^\\s*string\\s").matcher(line).find()) {
                 foundString(line);
-            }
-            if (Pattern.compile("^\\s*println[\\s]*[(]").matcher(line).find()) {
+            } else if (Pattern.compile("^\\s*println[\\s]*[(]").matcher(line).find()) {
                 foundPrintLn(line);
-            }
-            if (Pattern.compile("^\\s*print[\\s]*[(]").matcher(line).find()) {
+            } else if (Pattern.compile("^\\s*print[\\s]*[(]").matcher(line).find()) {
                 foundPrint(line);
+            } else {
+                foundAssignment(line);
             }
         }
     }
@@ -120,6 +116,15 @@ public class Parser {
             } else {
                 System.out.println(Variables.get(string.trim()).getValue());
             }
+        }
+    }
+
+    private void foundAssignment(String line) {
+        String[] s;
+
+        if (line.contains("=")) {
+            s = line.split(" ");
+            Variables.put(s[0], Variables.get(s[2]));
         }
     }
 

@@ -1,4 +1,7 @@
 int a = 7
 int b = 2
+int c
 println('Hello World')
 print(a, b)
+c = a
+print(c)
