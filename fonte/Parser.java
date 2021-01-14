@@ -159,6 +159,7 @@ public class Parser {
 
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
+        scan.close();
 
         Variables.get(line.trim()).setInputValue(input);
     }
