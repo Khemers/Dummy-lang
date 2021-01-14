@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -34,8 +33,8 @@ public class Parser {
                 foundPrintLn(line);
             } else if (Pattern.compile("^\\s*print[\\s]*[(]").matcher(line).find()) {
                 foundPrint(line);
-            } else if (Pattern.compile("^\\s*input[\\s]*[(]").matcher(line).find()) {
-                foundInput(line);
+            } else if(Pattern.compile("^\\s*if[\\s]*[(]").matcher(line).find()) {
+                foundIf(line);
             } else {
                 foundAssignment(line);
             }
@@ -83,26 +82,13 @@ public class Parser {
 
     private void foundString(String line) {
         VString String; String[] arr;
-        int indexOfEqual = 0;
 
         arr = line.split(" ");
-        System.out.println(Arrays.toString(arr));
-
-        for (int i = 0; i <= arr.length; i++) {
-            if (arr[i].equals("=")) {
-                indexOfEqual = i;
-                break;
-            }
+        try {
+            String = new VString(arr[1], arr[3].replace('"', Character.MIN_VALUE));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            String = new VString(arr[1]);
         }
-
-        StringBuilder str = new StringBuilder();
-        for (int x = indexOfEqual + 1; x <= arr.length - 1; x++) {
-            str.append(arr[x]).append(" ");
-        }
-
-        String = new VString(arr[1], str.toString().replace("'", ""));
-
-        System.out.println(String.getValue());
 
         Variables.put(String.name, String);
     }
@@ -152,11 +138,10 @@ public class Parser {
             } else {
                 Variables.get(s[0]).setValue(Variables.get(s[2]).getValue());
             }
+            if (Variables.get(s[0]).getValue().toString().contains("'")) {
+                Variables.get(s[0]).setValue(Variables.get(s[0]).getValue().toString().replace('\'', Character.MIN_VALUE));
+            }
         }
-    }
-
-    private void foundInput(String line) {
-
     }
     
     public void setCodigoFonte(StringBuilder codigoFonte) {
