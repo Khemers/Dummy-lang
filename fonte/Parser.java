@@ -7,7 +7,7 @@ import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
 
 public class Parser {
-
+    public static int atualLinha;
     public String[] codigoFonte;
     protected Map<String, Variable> Variables;
  
@@ -16,6 +16,16 @@ public class Parser {
 
         setCodigoFonte(codigoFonte);
         parseLines(this.codigoFonte);
+    }
+
+    Parser(){
+        this.Variables = new HashMap<>();
+        atualLinha = 1;
+    }
+
+    Parser(Map<String, Variable> Variables){
+        this.Variables = new HashMap<>();
+        this.Variables.putAll(Variables);
     }
 
     public void parseLines(String[] lines) {
@@ -33,13 +43,15 @@ public class Parser {
                 foundPrintLn(line);
             } else if (Pattern.compile("^\\s*print[\\s]*[(]").matcher(line).find()) {
                 foundPrint(line);
+            } else if(Pattern.compile("^\\s*if[\\s]*[(]").matcher(line).find()) {
+                foundIf(line);  
             } else {
                 foundAssignment(line);
             }
         }
     }
 
-    private void foundInt(String line) {
+	private void foundInt(String line) {
         VInt Int; String[] arr;
 
         arr = line.split(" ");
@@ -142,6 +154,30 @@ public class Parser {
         }
     }
     
+    private int foundIf(String[] line, int posicaodaLinha) {
+        Parser newParser = new Parser(Variables);
+        int contadordeIf = 1;
+        String condition =  conteudoParenteses(line[posicaodaLinha]);
+        String [] parseInsideIf = new String[0];
+        String [] parseInsideElse = new String[0];
+
+        boolean buscadordeElse = false;
+        
+        while(contadordeIf > 0){
+            posicaodaLinha++;
+        }
+        
+
+    }
+
+    private String conteudoParenteses(String line) {
+        int firstParenth = line.indexOf("(");
+        int lastParenth = line.lastIndexOf(")");
+
+        String betweenParenthesis = line.substring(firstParenth+1,lastParenth);
+        return betweenParenthesis.replaceAll("\\s+", " ").trim();
+    }
+
     public void setCodigoFonte(StringBuilder codigoFonte) {
         this.codigoFonte = codigoFonte.toString().split("\n");
     }
