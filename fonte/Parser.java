@@ -127,7 +127,7 @@ public class Parser {
             Variables.put(s[0], Variables.get(s[2]));
         }
     }
-
+    
     public void setCodigoFonte(StringBuilder codigoFonte) {
         this.codigoFonte = codigoFonte.toString().split("\n");
     }
