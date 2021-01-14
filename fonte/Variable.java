@@ -5,5 +5,9 @@ abstract class Variable {
 
     abstract Object getValue();
 
+    abstract Object getType();
+
+    abstract Object sum(String i);
+
     abstract void setValue(Object value);
 }

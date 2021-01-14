@@ -18,6 +18,12 @@ public class VInt extends Variable {
     }
 
     @Override
+    Object getType() { return this.type; }
+
+    @Override
+    public Object sum(String i) { return this.value + Integer.parseInt(i); }
+
+    @Override
     void setValue(Object value) {
         this.value = (int) value;
     }

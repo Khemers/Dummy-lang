@@ -2,6 +2,21 @@ int a = 7
 int b = 2
 int c
 println('Hello World')
-print(a, b)
+print('a:')
+print(a)
+print(' b:')
+println(b)
 c = a
-print(c)
+print('c [7]:')
+println(c)
+c = a + a
+print('c [14]:')
+println(c)
+c = 2 + a
+print('c [9]:')
+println(c)
+c = a + 1
+print('c [8]:')
+float c = 2.5
+c = c + 0.5
+println(c)
