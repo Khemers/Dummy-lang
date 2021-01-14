@@ -18,9 +18,6 @@ public class VString extends Variable {
     }
 
     @Override
-    Object getType() { return this.type; }
-
-    @Override
     public Object sum(String i) { return this.value + i; }
 
     @Override
