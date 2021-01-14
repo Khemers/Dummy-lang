@@ -7,6 +7,7 @@ public class Util {
         newArray[newArray.length-1] = newElement;
         return newArray;
     }
+
     public static String[] removeArray (int size, String[] Array, int position) {
         String[] newArray = new String[0];
         if(position == size-1){
@@ -19,6 +20,18 @@ public class Util {
             newArray = appendArray(newArray.length, newArray, Array[i]);
         }
         return newArray;
+    }
+
+    public static String[] lineInWordArray (String line){
+        String words[] = line.split(" ");
+        String semEspacos[] = new String[0];
+        for(int i = 0; i < words.length; i++){
+            if(!"".equals(words[i])){
+                semEspacos = appendArray(semEspacos.length, semEspacos, words[i]);
+            }
+        }
+
+        return semEspacos;
     }
 }
 
