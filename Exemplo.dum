@@ -20,3 +20,5 @@ print('c [8]:')
 float c = 2.5
 c = c + 0.5
 println(c)
+string p = 'Hello World'
+print(p)
