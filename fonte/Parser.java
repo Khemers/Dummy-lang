@@ -158,8 +158,8 @@ public class Parser {
         Parser newParser = new Parser(Variables);
         int contadordeIf = 1;
         String condition =  conteudoParenteses(line[positionLine]);
-        String [] parseInsideIf = new String[0];
-        String [] parseInsideElse = new String[0];
+        String [] parseToIf = new String[0];
+        String [] parseToElse = new String[0];
 
         boolean buscadordeElse = false;
         
@@ -168,10 +168,10 @@ public class Parser {
         }
 
         if(!buscadordeElse){
-            parseInsideIf = Util.appendArray(parseInsideIf.length, parseInsideIf, line[positionLine]);
+            parseToIf = Util.appendArray(parseToIf.length, parseToIf, line[positionLine]);
         }
         else{
-            parseInsideElse = Util.appendArray(parseInsideElse.length, parseInsideElse, line[positionLine]);
+            parseToElse = Util.appendArray(parseToElse.length, parseToElse, line[positionLine]);
         }
         if(Pattern.compile("^\\s*else[\\s]*$").matcher(line[positionLine]).find() && contadordeIf == 1){
             buscadordeElse = true;
@@ -184,10 +184,6 @@ public class Parser {
         }
     }
 
-    
-
-
-    }
 
     private String conteudoParenteses(String line) {
         int primeiroParenteses = line.indexOf("(");
