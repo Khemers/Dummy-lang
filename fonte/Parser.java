@@ -157,7 +157,6 @@ public class Parser {
         for (int i = currentLine; i < lines.length; i++){
             if (lines[i].contains("endif")) {
                 endIfLine = i;
-                break;
             }
         }
 
@@ -172,6 +171,12 @@ public class Parser {
                 }
             } else if (Variables.containsKey(strings[0])) {
                 if (Variables.get(strings[0]).ComparaIgual(strings[2])) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
+            } else if (Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[2]).ComparaIgual(strings[0])) {
                     return currentLine;
                 } else {
                     return endIfLine;
@@ -192,6 +197,12 @@ public class Parser {
                 } else {
                     return endIfLine;
                 }
+            } else if (Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[2]).ComparaMenorIgual(strings[0])) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
             }
         } else if (line.contains(">=")) {
             strings = line.trim().split(" ");
@@ -204,6 +215,12 @@ public class Parser {
                 }
             } else if (Variables.containsKey(strings[0])) {
                 if (Variables.get(strings[0]).ComparaMaiorIgual(strings[2])) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
+            } else if (Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[2]).ComparaMaiorIgual(strings[0])) {
                     return currentLine;
                 } else {
                     return endIfLine;
@@ -224,6 +241,12 @@ public class Parser {
                 } else {
                     return endIfLine;
                 }
+            } else if (Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[2]).ComparaMaior(strings[0])) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
             }
         } else if (line.contains("<")) {
             strings = line.trim().split(" ");
@@ -240,6 +263,12 @@ public class Parser {
                 } else {
                     return endIfLine;
                 }
+            } else if (Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[2]).ComparaMenor(strings[0])) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
             }
         } else if (line.contains("!=")) {
             strings = line.trim().split(" ");
@@ -252,6 +281,12 @@ public class Parser {
                 }
             } else if (Variables.containsKey(strings[0])) {
                 if (Variables.get(strings[0]).ComparaDiferente(strings[2])) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
+            } else if (Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[2]).ComparaDiferente(strings[0])) {
                     return currentLine;
                 } else {
                     return endIfLine;
