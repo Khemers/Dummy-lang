@@ -13,40 +13,22 @@ public class VDouble extends Variable {
     }
 
     @Override
-    public boolean ComparaIgual(Object Value) { return this.value == (double) Value; }
+    public boolean ComparaIgual(String Value) { return this.value == Double.parseDouble(Value); }
 
     @Override
-    public boolean ComparaMaior(Object Value) { return this.value > (double)Value; }
+    public boolean ComparaMaior(String Value) { return this.value > Double.parseDouble(Value); }
 
     @Override
-    public boolean ComparaMenor(Object Value) { return this.value < (double) Value; }
+    public boolean ComparaMenor(String Value) { return this.value < Double.parseDouble(Value); }
 
     @Override
-    public boolean ComparaMaiorIgual(Object Value) { return this.value >= (float) Value; }
+    public boolean ComparaMaiorIgual(String Value) { return this.value >= Double.parseDouble(Value); }
 
     @Override
-    public boolean ComparaMenorIgual(Object Value) { return this.value <= (double) Value; }
+    public boolean ComparaMenorIgual(String Value) { return this.value <= Double.parseDouble(Value); }
 
     @Override
-    public boolean ComparaDiferente(Object Value) { return this.value != (double) Value; }
-
-    @Override
-    public boolean ComparaStringIgual(Object Value) {return this.value == Double.parseDouble((String) Value);}
-
-    @Override
-    public boolean ComparaStringMaior(Object Value) {return this.value > Double.parseDouble((String) Value);}
-
-    @Override
-    public boolean ComparaStringMenor(Object Value) {return this.value < Double.parseDouble((String) Value);}
-
-    @Override
-    public boolean ComparaStringMaiorIgual(Object Value) {return this.value >= Double.parseDouble((String) Value);}
-
-    @Override
-    public boolean ComparaStringMenorIgual(Object Value) {return this.value <= Double.parseDouble((String) Value);}
-
-    @Override
-    public boolean ComparaStringDiferente(Object Value) {return this.value != Double.parseDouble((String) Value);}
+    public boolean ComparaDiferente(String Value) { return this.value != Double.parseDouble(Value); }
 
     @Override
     public Double getValue() {
@@ -57,8 +39,5 @@ public class VDouble extends Variable {
     public Object sum(String i) { return this.value + Double.parseDouble(i); }
 
     @Override
-    void setValue(Object value) { this.value = (double) value; }
-
-    @Override
-    void setInputValue(Object value) { this.value = Double.parseDouble((String) value); }
+    void setValue(String Value) { this.value = Double.parseDouble(Value); }
 }

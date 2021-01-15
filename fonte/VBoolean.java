@@ -12,40 +12,22 @@ public class VBoolean extends Variable {
         this.value = null;
     }
 
-    public boolean ComparaIgual(Object Value) {return this.value == (boolean) Value;}
+    public boolean ComparaIgual(String Value) {return this.value == Boolean.parseBoolean(Value);}
 
     @Override
-    public boolean ComparaMaior(Object Value) { return false; }
+    public boolean ComparaMaior(String Value) { return false; }
 
     @Override
-    public boolean ComparaMenor(Object Value) { return false; }
+    public boolean ComparaMenor(String Value) { return false; }
 
     @Override
-    public boolean ComparaMaiorIgual(Object Value) { return false; }
+    public boolean ComparaMaiorIgual(String Value) { return false; }
 
     @Override
-    public boolean ComparaMenorIgual(Object Value) { return false; }
+    public boolean ComparaMenorIgual(String Value) { return false; }
 
     @Override
-    public boolean ComparaDiferente(Object Value) { return this.value != (boolean) Value; }
-
-    @Override
-    public boolean ComparaStringIgual(Object Value) {return this.value == Boolean.parseBoolean((String) Value);}
-
-    @Override
-    public boolean ComparaStringMaior(Object Value) {return false;}
-
-    @Override
-    public boolean ComparaStringMenor(Object Value) {return false;}
-
-    @Override
-    public boolean ComparaStringMaiorIgual(Object Value) {return false;}
-
-    @Override
-    public boolean ComparaStringMenorIgual(Object Value) {return false;}
-
-    @Override
-    public boolean ComparaStringDiferente(Object Value) {return false;}
+    public boolean ComparaDiferente(String Value) { return this.value != Boolean.parseBoolean(Value); }
 
     @Override
     public Boolean getValue() {
@@ -56,8 +38,5 @@ public class VBoolean extends Variable {
     public Boolean sum(String i) { return this.value; }
 
     @Override
-    void setValue(Object value) { this.value = (boolean) value; }
-
-    @Override
-    void setInputValue(Object value) { this.value = (boolean) value; }
+    void setValue(String Value) { this.value = Boolean.parseBoolean(Value); }
 }

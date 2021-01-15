@@ -13,40 +13,22 @@ public class VInt extends Variable {
     }
 
     @Override
-    public boolean ComparaIgual(Object Value) {return this.value == (int) Value; }
+    public boolean ComparaIgual(String Value) {return this.value == Integer.parseInt(Value); }
 
     @Override
-    public boolean ComparaMaior(Object Value) { return this.value > (int) Value; }
+    public boolean ComparaMaior(String Value) { return this.value > Integer.parseInt(Value); }
 
     @Override
-    public boolean ComparaMenor(Object Value) { return this.value < (int) Value; }
+    public boolean ComparaMenor(String Value) { return this.value < Integer.parseInt(Value); }
 
     @Override
-    public boolean ComparaMaiorIgual(Object Value) { return this.value >= (int) Value; }
+    public boolean ComparaMaiorIgual(String Value) { return this.value >= Integer.parseInt(Value); }
 
     @Override
-    public boolean ComparaMenorIgual(Object Value) { return this.value <= (int) Value; }
+    public boolean ComparaMenorIgual(String Value) { return this.value <= Integer.parseInt(Value); }
 
     @Override
-    public boolean ComparaDiferente(Object Value) { return this.value != (int) Value; }
-
-    @Override
-    public boolean ComparaStringIgual(Object Value) {return this.value == Integer.parseInt((String) Value);}
-
-    @Override
-    public boolean ComparaStringMaior(Object Value) {return this.value > Integer.parseInt((String) Value);}
-
-    @Override
-    public boolean ComparaStringMenor(Object Value) {return this.value < Integer.parseInt((String) Value);}
-
-    @Override
-    public boolean ComparaStringMaiorIgual(Object Value) {return this.value >= Integer.parseInt((String) Value);}
-
-    @Override
-    public boolean ComparaStringMenorIgual(Object Value) {return this.value <= Integer.parseInt((String) Value);}
-
-    @Override
-    public boolean ComparaStringDiferente(Object Value) {return this.value != Integer.parseInt((String) Value);}
+    public boolean ComparaDiferente(String Value) { return this.value != Integer.parseInt(Value); }
 
     @Override
     public Integer getValue() {
@@ -57,8 +39,5 @@ public class VInt extends Variable {
     public Object sum(String i) { return this.value + Integer.parseInt(i); }
 
     @Override
-    void setValue(Object value) { this.value = (int) value; }
-
-    @Override
-    void setInputValue(Object value) { this.value = Integer.parseInt((String) value); }
+    void setValue(String Value) { this.value = Integer.parseInt(Value); }
 }

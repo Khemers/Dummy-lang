@@ -166,13 +166,13 @@ public class Parser {
             strings = line.trim().split(" ");
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[0]).ComparaIgual(Variables.get(strings[2]))) {
+                if (Variables.get(strings[0]).ComparaIgual(Variables.get(strings[2]).toString())) {
                     return currentLine;
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
-                if (Variables.get(strings[0]).ComparaStringIgual(strings[2])) {
+                if (Variables.get(strings[0]).ComparaIgual(strings[2])) {
                     return currentLine;
                 } else {
                     return endIfLine;
@@ -182,13 +182,13 @@ public class Parser {
             strings = line.trim().split(" ");
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[0]).ComparaMaior(Variables.get(strings[2]).getValue())) {
+                if (Variables.get(strings[0]).ComparaMaior(Variables.get(strings[2]).getValue().toString())) {
                     return currentLine;
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
-                if (Variables.get(strings[0]).ComparaStringMaior(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMaior(strings[2])) {
                     return currentLine;
                 } else {
                     return endIfLine;
@@ -198,13 +198,13 @@ public class Parser {
             strings = line.trim().split(" ");
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[0]).ComparaMenor(Variables.get(strings[2]).getValue())) {
+                if (Variables.get(strings[0]).ComparaMenor(Variables.get(strings[2]).getValue().toString())) {
                     return currentLine;
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
-                if (Variables.get(strings[0]).ComparaStringMenor(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMenor(strings[2])) {
                     return currentLine;
                 } else {
                     return endIfLine;
@@ -214,13 +214,13 @@ public class Parser {
             strings = line.trim().split(" ");
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[0]).ComparaMaiorIgual(Variables.get(strings[2]).getValue())) {
+                if (Variables.get(strings[0]).ComparaMaiorIgual(Variables.get(strings[2]).getValue().toString())) {
                     return currentLine;
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
-                if (Variables.get(strings[0]).ComparaStringMaiorIgual(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMaiorIgual(strings[2])) {
                     return currentLine;
                 } else {
                     return endIfLine;
@@ -230,13 +230,13 @@ public class Parser {
             strings = line.trim().split(" ");
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[0]).ComparaMenorIgual(Variables.get(strings[2]).getValue())) {
+                if (Variables.get(strings[0]).ComparaMenorIgual(Variables.get(strings[2]).getValue().toString())) {
                     return currentLine;
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
-                if (Variables.get(strings[0]).ComparaStringMenorIgual(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMenorIgual(strings[2])) {
                     return currentLine;
                 } else {
                     return endIfLine;
@@ -246,13 +246,13 @@ public class Parser {
             strings = line.trim().split(" ");
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[0]).ComparaDiferente(Variables.get(strings[2]).getValue())) {
+                if (Variables.get(strings[0]).ComparaDiferente(Variables.get(strings[2]).getValue().toString())) {
                     return currentLine;
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
-                if (Variables.get(strings[0]).ComparaStringDiferente(strings[2])) {
+                if (Variables.get(strings[0]).ComparaDiferente(strings[2])) {
                     return currentLine;
                 } else {
                     return endIfLine;
@@ -270,19 +270,19 @@ public class Parser {
 
             if (line.contains("+")) {
                 if (Variables.containsKey(s[2]) && Variables.containsKey(s[4])) {
-                    Variables.get(s[0]).setValue(Variables.get(s[2]).sum(Variables.get(s[4]).getValue().toString()));
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).sum(Variables.get(s[4]).getValue().toString()).toString());
                 } else if (Variables.containsKey(s[4])) {
-                    Variables.get(s[0]).setValue(Variables.get(s[4]).sum(s[2]));
+                    Variables.get(s[0]).setValue(Variables.get(s[4]).sum(s[2]).toString());
                 } else if (Variables.containsKey(s[2])) {
-                    Variables.get(s[0]).setValue(Variables.get(s[2]).sum(s[4]));
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).sum(s[4]).toString());
                 } else {
                     Variables.get(s[0]).setValue(s[2]);
                 }
             } else {
                 if (Variables.containsKey(s[2])) {
-                    Variables.get(s[0]).setValue(Variables.get(s[2]).getValue());
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).getValue().toString());
                 } else {
-                    Variables.get(s[0]).setInputValue(s[2]);
+                    Variables.get(s[0]).setValue(s[2]);
                 }
             }
             if (Variables.get(s[0]).getValue().toString().contains("'")) {
@@ -297,7 +297,7 @@ public class Parser {
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
 
-        Variables.get(line.trim()).setInputValue(input);
+        Variables.get(line.trim()).setValue(input);
     }
     
     public void setCodigoFonte(StringBuilder codigoFonte) {
