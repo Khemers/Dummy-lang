@@ -15,6 +15,18 @@ abstract class Variable {
 
     abstract boolean ComparaDiferente(Object Value);
 
+    abstract boolean ComparaStringIgual(Object Value);
+
+    abstract boolean ComparaStringMaior(Object Value);
+
+    abstract boolean ComparaStringMenor(Object Value);
+
+    abstract boolean ComparaStringMaiorIgual(Object Value);
+
+    abstract boolean ComparaStringMenorIgual(Object Value);
+
+    abstract boolean ComparaStringDiferente(Object Value);
+
     abstract Object getValue();
 
     abstract Object sum(String i);

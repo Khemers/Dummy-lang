@@ -31,6 +31,24 @@ public class VString extends Variable {
     public boolean ComparaDiferente(Object Value) { return false; }
 
     @Override
+    public boolean ComparaStringIgual(Object Value) {return this.value == ((String) Value);}
+
+    @Override
+    public boolean ComparaStringMaior(Object Value) {return false;}
+
+    @Override
+    public boolean ComparaStringMenor(Object Value) {return false;}
+
+    @Override
+    public boolean ComparaStringMaiorIgual(Object Value) {return false;}
+
+    @Override
+    public boolean ComparaStringMenorIgual(Object Value) {return false;}
+
+    @Override
+    public boolean ComparaStringDiferente(Object Value) {return this.value != ((String) Value);}
+
+    @Override
     public String getValue() {
         return this.value;
     }

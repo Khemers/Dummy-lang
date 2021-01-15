@@ -30,6 +30,24 @@ public class VBoolean extends Variable {
     public boolean ComparaDiferente(Object Value) { return this.value != (boolean) Value; }
 
     @Override
+    public boolean ComparaStringIgual(Object Value) {return this.value == Boolean.parseBoolean((String) Value);}
+
+    @Override
+    public boolean ComparaStringMaior(Object Value) {return false;}
+
+    @Override
+    public boolean ComparaStringMenor(Object Value) {return false;}
+
+    @Override
+    public boolean ComparaStringMaiorIgual(Object Value) {return false;}
+
+    @Override
+    public boolean ComparaStringMenorIgual(Object Value) {return false;}
+
+    @Override
+    public boolean ComparaStringDiferente(Object Value) {return false;}
+
+    @Override
     public Boolean getValue() {
         return value;
     }

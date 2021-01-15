@@ -31,6 +31,24 @@ public class VDouble extends Variable {
     public boolean ComparaDiferente(Object Value) { return this.value != (double) Value; }
 
     @Override
+    public boolean ComparaStringIgual(Object Value) {return this.value == Double.parseDouble((String) Value);}
+
+    @Override
+    public boolean ComparaStringMaior(Object Value) {return this.value > Double.parseDouble((String) Value);}
+
+    @Override
+    public boolean ComparaStringMenor(Object Value) {return this.value < Double.parseDouble((String) Value);}
+
+    @Override
+    public boolean ComparaStringMaiorIgual(Object Value) {return this.value >= Double.parseDouble((String) Value);}
+
+    @Override
+    public boolean ComparaStringMenorIgual(Object Value) {return this.value <= Double.parseDouble((String) Value);}
+
+    @Override
+    public boolean ComparaStringDiferente(Object Value) {return this.value != Double.parseDouble((String) Value);}
+
+    @Override
     public Double getValue() {
         return value;
     }
