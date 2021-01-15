@@ -274,6 +274,8 @@ public class Parser {
                     Variables.get(s[0]).setValue(Variables.get(s[4]).sum(s[2]).toString());
                 } else if (Variables.containsKey(s[2])) {
                     Variables.get(s[0]).setValue(Variables.get(s[2]).sum(s[4]).toString());
+                } else {
+                    Math.sum(Variables.get(s[0]), s[2], s[4]);
                 }
             } else {
                 if (Variables.containsKey(s[2])) {

@@ -35,7 +35,7 @@ if(q <= qq)
 println('alo')
 endif
 println('oi')
-q = 4
+q = 4 + 4
 if(q == 4)
 println('java eh uma merda')
 endif
