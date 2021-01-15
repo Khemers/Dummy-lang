@@ -37,10 +37,10 @@ endif
 println('oi')
 q = 4 + 4
 if(q == 8)
-println('java eh uma merda')
-int m = 4
-if(3 == m)
-println('If if')
-endif
-println('fim')
+    println('java eh uma merda')
+    int m = 4
+    if(3 == m)
+        println('If if')
+    endif
+    println('fim')
 endif

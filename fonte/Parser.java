@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -50,7 +51,7 @@ public class Parser {
     private void foundInt(String line) {
         VInt Int; String[] arr;
 
-        arr = line.split(" ");
+        arr = line.substring(line.indexOf("i")).split(" ");
         try {
             Int = new VInt(arr[1], parseInt(arr[3]));
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -122,7 +123,7 @@ public class Parser {
     }
 
     private void foundPrint(String line) {
-        line = line.substring(6).replace(')', Character.MIN_VALUE);
+        line = line.substring(line.indexOf("(") + 1).replace(')', Character.MIN_VALUE); // 6
         String[] strings = line.split(",");
 
         for (String string : strings) {
@@ -136,7 +137,7 @@ public class Parser {
     }
 
     private void foundPrintLn(String line) {
-        line = line.substring(8).replace(')', Character.MIN_VALUE);
+        line = line.substring(line.indexOf("(") + 1).replace(')', Character.MIN_VALUE); // 8
         String[] strings = line.split(",");
 
         for (String string : strings) {
@@ -151,7 +152,7 @@ public class Parser {
 
     private int foundIf(String[] lines, int currentLine) {
         String line; int endIfLine = 0;
-        line = lines[currentLine].substring(3).replace(')', Character.MIN_VALUE);
+        line = lines[currentLine].substring(lines[currentLine].indexOf("(") + 1).replace(')', Character.MIN_VALUE); // 3
         String[] strings;
 
         for (int i = currentLine; i < lines.length; i++){
