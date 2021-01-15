@@ -140,12 +140,12 @@ public class Parser {
     }
 
     private int foundIf(String[] lines, int currentLine) {
-        String line;
+        String line; int endIfLine = 0;
         line = lines[currentLine].substring(3).replace(')', Character.MIN_VALUE);
         String[] strings;
         for (int i = currentLine; i < lines.length; i++){
             if (lines[i].contains("endif")){
-                return i;
+                endIfLine = i;
             }
         }
         if (line.contains("==")) {
@@ -164,6 +164,8 @@ public class Parser {
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[0]).ComparaMaior(Variables.get(strings[2]))) {
                     return currentLine;
+                }else {
+                    return endIfLine;
                 }
             }
         }
