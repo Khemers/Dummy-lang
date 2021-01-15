@@ -121,7 +121,6 @@ public class Parser {
         Variables.put(Boolean.name, Boolean);
     }
 
-
     private void foundPrint(String line) {
         line = line.substring(6).replace(')', Character.MIN_VALUE);
         String[] strings = line.split(",");
