@@ -288,7 +288,29 @@ public class Parser {
                 } else {
                     Math.sub(Variables.get(s[0]), s[2], s[4]);
                 }
-            } else {
+            }
+            else if (line.contains("*")) {
+                if (Variables.containsKey(s[2]) && Variables.containsKey(s[4])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).mult(Variables.get(s[4]).getValue().toString()).toString());
+                } else if (Variables.containsKey(s[4])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[4]).mult(s[2]).toString());
+                } else if (Variables.containsKey(s[2])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).mult(s[4]).toString());
+                } else {
+                    Math.mult(Variables.get(s[0]), s[2], s[4]);
+                }
+            }
+            else if (line.contains("/")) {
+                if (Variables.containsKey(s[2]) && Variables.containsKey(s[4])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).div(Variables.get(s[4]).getValue().toString()).toString());
+                } else if (Variables.containsKey(s[4])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[4]).div(s[2]).toString());
+                } else if (Variables.containsKey(s[2])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).div(s[4]).toString());
+                } else {
+                    Math.div(Variables.get(s[0]), s[2], s[4]);
+                }
+            }else {
                 if (Variables.containsKey(s[2])) {
                     Variables.get(s[0]).setValue(Variables.get(s[2]).getValue().toString());
                 } else {

@@ -43,5 +43,11 @@ public class VBoolean extends Variable {
     @Override
     public Boolean sub(String i) { return this.value; }
 
+    @Override
+    public Boolean mult(String i) { return this.value; }
+
+    @Override
+    public Boolean div(String i) { return this.value; }
+
 
 }

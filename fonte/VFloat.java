@@ -43,4 +43,10 @@ public class VFloat extends Variable {
 
     @Override
     public Object sub(String i) { return this.value - Float.parseFloat(i); }
+
+    @Override
+    public Object mult(String i) { return this.value * Float.parseFloat(i); }
+
+    @Override
+    public Object div(String i) { return this.value / Float.parseFloat(i); }
 }
