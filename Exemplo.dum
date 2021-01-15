@@ -22,15 +22,19 @@ c = c + 0.5
 println(c)
 string p = 'Hello World'
 println(p)
-print('String Input: ')
-input(p)
-println(p)
-print('Int Input: ')
-int q
+
+
+
+
+int q = 0
 int qq = 10
-input(q)
-println(q)
+
+
 if(q > qq)
 println('alo')
 endif
 println('oi')
+q = 4
+if(q == 4)
+println('java eh uma merda')
+endif
