@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
+import static java.lang.Boolean.parseBoolean;
 
 public class Parser {
 
@@ -108,8 +109,18 @@ public class Parser {
     }
 
     private void foundBoolean(String line) {
-        //TODO
+        VBoolean Boolean; String[] arr;
+
+        arr = line.split(" ");
+        try {
+            Boolean = new VBoolean(arr[1], parseBoolean(arr[3]));
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Boolean = new VBoolean(arr[1]);
+        }
+
+        Variables.put(Boolean.name, Boolean);
     }
+
 
     private void foundPrint(String line) {
         line = line.substring(6).replace(')', Character.MIN_VALUE);
@@ -140,6 +151,7 @@ public class Parser {
     }
 
     private int foundIf(String[] lines, int currentLine) {
+        System.out.println("Shadow");
         String line; int endIfLine = 0;
         line = lines[currentLine].substring(3).replace(')', Character.MIN_VALUE);
         String[] strings;
