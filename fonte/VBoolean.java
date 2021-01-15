@@ -39,4 +39,9 @@ public class VBoolean extends Variable {
 
     @Override
     void setValue(String Value) { this.value = Boolean.parseBoolean(Value); }
+
+    @Override
+    public Boolean sub(String i) { return this.value; }
+
+
 }

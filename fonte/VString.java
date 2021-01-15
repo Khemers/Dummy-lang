@@ -40,4 +40,7 @@ public class VString extends Variable {
 
     @Override
     void setValue(String Value) { this.value = Value; }
+
+    @Override
+    public Object sub(String i) { return this.value; }
 }

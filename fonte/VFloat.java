@@ -40,4 +40,7 @@ public class VFloat extends Variable {
 
     @Override
     void setValue(String Value) { this.value = Float.parseFloat(Value); }
+
+    @Override
+    public Object sub(String i) { return this.value - Float.parseFloat(i); }
 }

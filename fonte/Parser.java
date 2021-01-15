@@ -277,6 +277,17 @@ public class Parser {
                 } else {
                     Math.sum(Variables.get(s[0]), s[2], s[4]);
                 }
+            }
+            else if (line.contains("-")) {
+                if (Variables.containsKey(s[2]) && Variables.containsKey(s[4])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).sub(Variables.get(s[4]).getValue().toString()).toString());
+                } else if (Variables.containsKey(s[4])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[4]).sub(s[2]).toString());
+                } else if (Variables.containsKey(s[2])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).sub(s[4]).toString());
+                } else {
+                    Math.sub(Variables.get(s[0]), s[2], s[4]);
+                }
             } else {
                 if (Variables.containsKey(s[2])) {
                     Variables.get(s[0]).setValue(Variables.get(s[2]).getValue().toString());

@@ -19,4 +19,9 @@ abstract class Variable {
     abstract Object sum(String i);
 
     abstract void setValue(String Value);
+
+    abstract Object sub(String i);
+
+
 }
+

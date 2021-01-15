@@ -40,4 +40,7 @@ public class VDouble extends Variable {
 
     @Override
     void setValue(String Value) { this.value = Double.parseDouble(Value); }
+
+    @Override
+    public Object sub(String i) { return this.value - Double.parseDouble(i); }
 }

@@ -40,4 +40,7 @@ public class VInt extends Variable {
 
     @Override
     void setValue(String Value) { this.value = Integer.parseInt(Value); }
+
+    @Override
+    public Object sub(String i) { return this.value - Integer.parseInt(i); }
 }
