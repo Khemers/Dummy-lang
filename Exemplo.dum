@@ -27,9 +27,10 @@ input(p)
 println(p)
 print('Int Input: ')
 int q
+int qq = 10
 input(q)
 println(q)
-if(q > 10)
+if(q > qq)
 println('alo')
 endif
 println('oi')

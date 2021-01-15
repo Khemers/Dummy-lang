@@ -13,10 +13,7 @@ public class VInt extends Variable {
     }
 
     @Override
-    public boolean ComparaMaior(Object Value) {
-        
-        return this.value > (int)Value;
-    }
+    public boolean ComparaMaior(Object Value) { return this.value > (int) Value; }
 
     @Override
     public Integer getValue() {
