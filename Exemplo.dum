@@ -29,3 +29,7 @@ print('Int Input: ')
 int q
 input(q)
 println(q)
+if(q > 10)
+println('alo')
+endif
+println('oi')

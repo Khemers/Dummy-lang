@@ -13,6 +13,12 @@ public class VBoolean extends Variable {
     }
 
     @Override
+    public boolean ComparaMaior(Object Value) {
+        
+        return false;
+    }
+
+    @Override
     public Boolean getValue() {
         return value;
     }

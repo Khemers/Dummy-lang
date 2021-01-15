@@ -13,6 +13,12 @@ public class VString extends Variable {
     }
 
     @Override
+    public boolean ComparaMaior(Object Value) {
+        
+        return false;
+    }
+
+    @Override
     public String getValue() {
         return this.value;
     }

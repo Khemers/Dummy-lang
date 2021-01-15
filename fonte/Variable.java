@@ -3,6 +3,8 @@ abstract class Variable {
     public String name;
     public Object value;
 
+    abstract boolean ComparaMaior(Object Value);
+
     abstract Object getValue();
 
     abstract Object sum(String i);

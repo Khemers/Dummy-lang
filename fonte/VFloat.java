@@ -13,6 +13,12 @@ public class VFloat extends Variable {
     }
 
     @Override
+    public boolean ComparaMaior(Object Value) {
+        
+        return this.value > (float)Value;
+    }
+
+    @Override
     public Float getValue() {
         return value;
     }

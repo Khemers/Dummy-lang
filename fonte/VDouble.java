@@ -13,6 +13,12 @@ public class VDouble extends Variable {
     }
 
     @Override
+    public boolean ComparaMaior(Object Value) {
+        
+        return this.value > (double)Value;
+    }
+
+    @Override
     public Double getValue() {
         return value;
     }
