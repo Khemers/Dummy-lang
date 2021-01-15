@@ -13,7 +13,7 @@ public class VString extends Variable {
     }
 
     @Override
-    public boolean ComparaIgual(String Value) {return this.value.equals(Value);}
+    public boolean ComparaIgual(String Value) { return this.value.equals(Value); }
 
     @Override
     public boolean ComparaMaior(String Value) { return false; }

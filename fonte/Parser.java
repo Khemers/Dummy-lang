@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;
@@ -64,7 +65,7 @@ public class Parser {
     private void foundFloat(String line) {
         VFloat Float; String[] arr;
 
-        arr = line.split(" ");
+        arr = line.substring(line.indexOf("f")).split(" ");
         try {
             Float = new VFloat(arr[1], parseFloat(arr[3]));
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -77,7 +78,7 @@ public class Parser {
     private void foundDouble(String line) {
         VDouble Double; String[] arr;
 
-        arr = line.split(" ");
+        arr = line.substring(line.indexOf("d")).split(" ");
         try {
             Double = new VDouble(arr[1], parseDouble(arr[3]));
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -91,7 +92,13 @@ public class Parser {
         VString String; String[] arr;
         int indexOfEqual = 0;
 
-        arr = line.split(" ");
+        arr = line.substring(line.indexOf("s")).split(" ");
+
+        if (arr.length == 2) {
+            String = new VString(arr[1]);
+            Variables.put(String.name, String);
+            return;
+        }
 
         for (int i = 0; i <= arr.length; i++) {
             if (arr[i].equals("=")) {
@@ -112,7 +119,7 @@ public class Parser {
     private void foundBoolean(String line) {
         VBoolean Boolean; String[] arr;
 
-        arr = line.split(" ");
+        arr = line.substring(line.indexOf("b")).split(" ");
         try {
             Boolean = new VBoolean(arr[1], parseBoolean(arr[3]));
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -152,33 +159,50 @@ public class Parser {
 
     private int foundIf(String[] lines, int currentLine) {
         String line; int endIfLine = 0;
-        line = lines[currentLine].substring(lines[currentLine].indexOf("(") + 1).replace(')', Character.MIN_VALUE); // 3
+        line = lines[currentLine].trim().substring(3).replace(')', Character.MIN_VALUE);
         String[] strings;
 
-        for (int i = currentLine; i < lines.length; i++){
+        int countIf = 0; int countEndIf = 0; int z = 0;
+        int[] endIfLines = new int[lines.length];
+        for (int i = currentLine; i < lines.length; i++) {
             if (lines[i].contains("endif")) {
-                endIfLine = i;
+                countEndIf++;
+                endIfLines[z] = i;
+                z++;
+                if (countIf == 1) {
+                    endIfLine = i;
+                    break;
+                } else if ((countEndIf - countIf) == 0) {
+                    endIfLine = endIfLines[z - 1];
+                    break;
+                }
+            } else if (lines[i].contains("if")) {
+                countIf++;
             }
         }
+        //System.out.println(Arrays.toString(endIfLines));
 
         if (line.contains("==")) {
             strings = line.trim().split(" ");
-
+            //System.out.println(Arrays.toString(strings));
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[0]).ComparaIgual(Variables.get(strings[2]).toString())) {
-                    return currentLine;
+                if (Variables.get(strings[0]).ComparaIgual(Variables.get(strings[2]).getValue().toString())) {
+                    //System.out.println(Arrays.toString(Arrays.stream(lines, currentLine + 1, endIfLine + 1).toArray(String[]::new)));
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
                 if (Variables.get(strings[0]).ComparaIgual(strings[2])) {
-                    return currentLine;
+                    //System.out.println(Arrays.toString(Arrays.stream(lines, currentLine + 1, endIfLine + 1).toArray(String[]::new)));
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[2]).ComparaIgual(strings[0])) {
-                    return currentLine;
+                    //System.out.println(Arrays.toString(Arrays.stream(lines, currentLine + 1, endIfLine + 1).toArray(String[]::new)));
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
@@ -188,19 +212,19 @@ public class Parser {
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[0]).ComparaMenorIgual(Variables.get(strings[2]).getValue().toString())) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
                 if (Variables.get(strings[0]).ComparaMenorIgual(strings[2])) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[2]).ComparaMenorIgual(strings[0])) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
@@ -210,19 +234,19 @@ public class Parser {
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[0]).ComparaMaiorIgual(Variables.get(strings[2]).getValue().toString())) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
                 if (Variables.get(strings[0]).ComparaMaiorIgual(strings[2])) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[2]).ComparaMaiorIgual(strings[0])) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
@@ -232,19 +256,19 @@ public class Parser {
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[0]).ComparaMaior(Variables.get(strings[2]).getValue().toString())) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
                 if (Variables.get(strings[0]).ComparaMaior(strings[2])) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[2]).ComparaMaior(strings[0])) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
@@ -254,19 +278,19 @@ public class Parser {
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[0]).ComparaMenor(Variables.get(strings[2]).getValue().toString())) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
                 if (Variables.get(strings[0]).ComparaMenor(strings[2])) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[2]).ComparaMenor(strings[0])) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
@@ -276,32 +300,33 @@ public class Parser {
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[0]).ComparaDiferente(Variables.get(strings[2]).getValue().toString())) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
                 if (Variables.get(strings[0]).ComparaDiferente(strings[2])) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[2]).ComparaDiferente(strings[0])) {
-                    return currentLine;
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             }
         }
-        return currentLine;
+        //System.out.println(endIfLine);
+        return endIfLine;
     }
 
     private void foundAssignment(String line) {
         String[] s;
 
         if (line.contains("=")) {
-            s = line.split(" ");
+            s = line.trim().split(" ");
 
             if (line.contains("+")) {
                 if (Variables.containsKey(s[2]) && Variables.containsKey(s[4])) {
@@ -371,7 +396,7 @@ public class Parser {
     }
 
     private void foundInput(String line) {
-        line = line.substring(6).replace(')', Character.MIN_VALUE);
+        line = line.trim().substring(6).replace(')', Character.MIN_VALUE);
 
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
