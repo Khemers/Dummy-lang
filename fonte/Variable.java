@@ -22,6 +22,10 @@ abstract class Variable {
 
     abstract Object sub(String i);
 
+    abstract Object mult(String i);
 
+    abstract Object div(String i);
+
+    abstract Object rest(String i);
 }
 

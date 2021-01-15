@@ -43,4 +43,13 @@ public class VInt extends Variable {
 
     @Override
     public Object sub(String i) { return this.value - Integer.parseInt(i); }
+
+    @Override
+    public Object mult(String i) { return this.value * Integer.parseInt(i); }
+
+    @Override
+    public Object div(String i) { return this.value / Integer.parseInt(i); }
+
+    @Override
+    public Object rest(String i) { return this.value % Integer.parseInt(i); }
 }

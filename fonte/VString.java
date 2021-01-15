@@ -43,4 +43,13 @@ public class VString extends Variable {
 
     @Override
     public Object sub(String i) { return this.value; }
+
+    @Override
+    public Object mult(String i) { return this.value; }
+
+    @Override
+    public Object div(String i) { return this.value; }
+
+    @Override
+    public Object rest(String i) { return this.value; }
 }
