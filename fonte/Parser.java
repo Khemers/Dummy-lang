@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -178,6 +177,38 @@ public class Parser {
                     return endIfLine;
                 }
             }
+        } else if (line.contains("<=")) {
+            strings = line.trim().split(" ");
+
+            if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMenorIgual(Variables.get(strings[2]).getValue().toString())) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
+            } else if (Variables.containsKey(strings[0])) {
+                if (Variables.get(strings[0]).ComparaMenorIgual(strings[2])) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
+            }
+        } else if (line.contains(">=")) {
+            strings = line.trim().split(" ");
+
+            if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMaiorIgual(Variables.get(strings[2]).getValue().toString())) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
+            } else if (Variables.containsKey(strings[0])) {
+                if (Variables.get(strings[0]).ComparaMaiorIgual(strings[2])) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
+            }
         } else if (line.contains(">")) {
             strings = line.trim().split(" ");
 
@@ -205,38 +236,6 @@ public class Parser {
                 }
             } else if (Variables.containsKey(strings[0])) {
                 if (Variables.get(strings[0]).ComparaMenor(strings[2])) {
-                    return currentLine;
-                } else {
-                    return endIfLine;
-                }
-            }
-        } else if (line.contains(">=")) {
-            strings = line.trim().split(" ");
-
-            if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[0]).ComparaMaiorIgual(Variables.get(strings[2]).getValue().toString())) {
-                    return currentLine;
-                } else {
-                    return endIfLine;
-                }
-            } else if (Variables.containsKey(strings[0])) {
-                if (Variables.get(strings[0]).ComparaMaiorIgual(strings[2])) {
-                    return currentLine;
-                } else {
-                    return endIfLine;
-                }
-            }
-        } else if (line.contains("<=")) {
-            strings = line.trim().split(" ");
-
-            if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[0]).ComparaMenorIgual(Variables.get(strings[2]).getValue().toString())) {
-                    return currentLine;
-                } else {
-                    return endIfLine;
-                }
-            } else if (Variables.containsKey(strings[0])) {
-                if (Variables.get(strings[0]).ComparaMenorIgual(strings[2])) {
                     return currentLine;
                 } else {
                     return endIfLine;
@@ -275,8 +274,6 @@ public class Parser {
                     Variables.get(s[0]).setValue(Variables.get(s[4]).sum(s[2]).toString());
                 } else if (Variables.containsKey(s[2])) {
                     Variables.get(s[0]).setValue(Variables.get(s[2]).sum(s[4]).toString());
-                } else {
-                    Variables.get(s[0]).setValue(s[2]);
                 }
             } else {
                 if (Variables.containsKey(s[2])) {

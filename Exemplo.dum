@@ -17,6 +17,7 @@ print('c [9]:')
 println(c)
 c = a + 1
 print('c [8]:')
+println(c)
 float c = 2.5
 c = c + 0.5
 println(c)
@@ -26,11 +27,11 @@ println(p)
 
 
 
-int q = 0
+int q = 10
 int qq = 10
 
 
-if(q > qq)
+if(q <= qq)
 println('alo')
 endif
 println('oi')
