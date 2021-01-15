@@ -13,10 +13,22 @@ public class VDouble extends Variable {
     }
 
     @Override
-    public boolean ComparaMaior(Object Value) {
-        
-        return this.value > (double)Value;
-    }
+    public boolean ComparaIgual(Object Value) { return this.value == (double) Value; }
+
+    @Override
+    public boolean ComparaMaior(Object Value) { return this.value > (double)Value; }
+
+    @Override
+    public boolean ComparaMenor(Object Value) { return this.value < (double) Value; }
+
+    @Override
+    public boolean ComparaMaiorIgual(Object Value) { return this.value >= (float) Value; }
+
+    @Override
+    public boolean ComparaMenorIgual(Object Value) { return this.value <= (double) Value; }
+
+    @Override
+    public boolean ComparaDiferente(Object Value) { return this.value != (double) Value; }
 
     @Override
     public Double getValue() {

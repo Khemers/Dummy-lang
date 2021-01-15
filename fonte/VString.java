@@ -13,10 +13,22 @@ public class VString extends Variable {
     }
 
     @Override
-    public boolean ComparaMaior(Object Value) {
-        
-        return false;
-    }
+    public boolean ComparaIgual(Object Value) {return this.value == Value;}
+
+    @Override
+    public boolean ComparaMaior(Object Value) { return false; }
+
+    @Override
+    public boolean ComparaMenor(Object Value) { return false; }
+
+    @Override
+    public boolean ComparaMaiorIgual(Object Value) { return false; }
+
+    @Override
+    public boolean ComparaMenorIgual(Object Value) { return false; }
+
+    @Override
+    public boolean ComparaDiferente(Object Value) { return false; }
 
     @Override
     public String getValue() {

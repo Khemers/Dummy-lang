@@ -163,11 +163,13 @@ public class Parser {
         }
 
         if (line.contains("==")) {
-            strings = line.split(" ");
+            strings = line.trim().split(" ");
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[0]).getValue()  == Variables.get(strings[2]).getValue()) {
+                if (Variables.get(strings[0]).ComparaIgual(Variables.get(strings[2]).getValue())) {
                     return currentLine;
+                } else {
+                    return endIfLine;
                 }
             }
         } else if (line.contains(">")) {
@@ -180,8 +182,47 @@ public class Parser {
                     return endIfLine;
                 }
             }
-        }
+        } else if (line.contains("<")) {
+            strings = line.trim().split(" ");
 
+            if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMenor(Variables.get(strings[2]).getValue())) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
+            }
+        } else if (line.contains(">=")) {
+            strings = line.trim().split(" ");
+
+            if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMaiorIgual(Variables.get(strings[2]).getValue())) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
+            }
+        } else if (line.contains("<=")) {
+            strings = line.trim().split(" ");
+
+            if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMenorIgual(Variables.get(strings[2]).getValue())) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
+            }
+        } else if (line.contains("!=")) {
+            strings = line.trim().split(" ");
+
+            if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[0]).ComparaDiferente(Variables.get(strings[2]).getValue())) {
+                    return currentLine;
+                } else {
+                    return endIfLine;
+                }
+            }
+        }
         return currentLine;
     }
 

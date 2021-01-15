@@ -13,7 +13,22 @@ public class VInt extends Variable {
     }
 
     @Override
+    public boolean ComparaIgual(Object Value) {return this.value == (int) Value; }
+
+    @Override
     public boolean ComparaMaior(Object Value) { return this.value > (int) Value; }
+
+    @Override
+    public boolean ComparaMenor(Object Value) { return this.value < (int) Value; }
+
+    @Override
+    public boolean ComparaMaiorIgual(Object Value) { return this.value >= (int) Value; }
+
+    @Override
+    public boolean ComparaMenorIgual(Object Value) { return this.value <= (int) Value; }
+
+    @Override
+    public boolean ComparaDiferente(Object Value) { return this.value != (int) Value; }
 
     @Override
     public Integer getValue() {
