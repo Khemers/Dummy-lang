@@ -310,7 +310,18 @@ public class Parser {
                 } else {
                     Math.div(Variables.get(s[0]), s[2], s[4]);
                 }
-            }else {
+            }else if (line.contains("%")) {
+                if (Variables.containsKey(s[2]) && Variables.containsKey(s[4])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).rest(Variables.get(s[4]).getValue().toString()).toString());
+                } else if (Variables.containsKey(s[4])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[4]).rest(s[2]).toString());
+                } else if (Variables.containsKey(s[2])) {
+                    Variables.get(s[0]).setValue(Variables.get(s[2]).rest(s[4]).toString());
+                } else {
+                    Math.rest(Variables.get(s[0]), s[2], s[4]);
+                }
+            }
+            else {
                 if (Variables.containsKey(s[2])) {
                     Variables.get(s[0]).setValue(Variables.get(s[2]).getValue().toString());
                 } else {

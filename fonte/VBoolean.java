@@ -49,5 +49,7 @@ public class VBoolean extends Variable {
     @Override
     public Boolean div(String i) { return this.value; }
 
+    @Override
+    public Boolean rest(String i) { return this.value; }
 
 }
