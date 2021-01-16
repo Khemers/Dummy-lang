@@ -9,8 +9,8 @@ println(b)
 c = a
 print('c [7]:')
 println(c)
-c = a + a
-print('c [14]:')
+c = a - a
+print('c [0]:')
 println(c)
 c = 2 + a
 print('c [9]:')
@@ -44,7 +44,7 @@ if(q == 8)
         println(str)
         if(str == 'hi')
             println(str)
-            if (str == str)
+            if(str == str)
                 printlf('whgwuioghwghuiwghwuigui')
             endif
         endif
@@ -55,3 +55,21 @@ string teste = 'hello'
 if(teste == 'hello')
     println('funciona')
 endif
+int qqq = 0
+while(qqq >= 0)
+    println(qqq)
+    qqq = qqq + 1
+    int zz = 0
+    while(q == 8)
+        zz = zz + 1
+        print('z ')
+        println(zz)
+        if(zz > 2)
+            q = -1
+        endif
+    endwhile
+    if(qqq == 20)
+        qqq = -1
+    endif
+endwhile
+println(qqq)
