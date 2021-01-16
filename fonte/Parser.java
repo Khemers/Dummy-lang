@@ -139,8 +139,10 @@ public class Parser {
 
             if (string.contains("'")) {
                 System.out.print(string.replace('\'', Character.MIN_VALUE));
-            } else {
+            } else if (Variables.containsKey(string.trim())) {
                 System.out.print(Variables.get(string.trim()).getValue());
+            } else {
+                System.out.print(string);
             }
         }
     }
@@ -153,8 +155,10 @@ public class Parser {
 
             if (string.contains("'")) {
                 System.out.println(string.replace('\'', Character.MIN_VALUE));
-            } else {
+            } else if (Variables.containsKey(string.trim())) {
                 System.out.println(Variables.get(string.trim()).getValue());
+            } else {
+                System.out.println(string);
             }
         }
     }
@@ -310,6 +314,32 @@ public class Parser {
                 }
             } else if (Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[2]).ComparaDiferente(strings[0])) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
+                } else {
+                    return endIfLine;
+                }
+            }
+        } else {
+            strings = line.trim().split(" ");
+
+            if (Variables.containsKey(strings[0])) {
+                if (Variables.get(strings[0]).getValue() == (Object) true) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
+                } else {
+                    return endIfLine;
+                }
+            } else if (line.contains("!")) {
+                strings = line.replace("!", "").trim().split(" ");
+
+                if (Variables.containsKey(strings[0])) {
+                    if (Variables.get(strings[0]).getValue() == (Object) false) {
+                        parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
+                    } else {
+                        return endIfLine;
+                    }
+                }
+            } else {
+                if (strings[0].equals("true")) {
                     parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
@@ -475,8 +505,33 @@ public class Parser {
                     return endWhileLine;
                 }
             }
-        }
+        } else {
+            strings = line.trim().split(" ");
 
+            if (Variables.containsKey(strings[0])) {
+                if (Variables.get(strings[0]).getValue() == (Object) true) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
+                } else {
+                    return endWhileLine;
+                }
+            } else if (line.contains("!")) {
+                strings = line.replace("!", "").trim().split(" ");
+
+                if (Variables.containsKey(strings[0])) {
+                    if (Variables.get(strings[0]).getValue() == (Object) false) {
+                        parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
+                    } else {
+                        return endWhileLine;
+                    }
+                }
+            } else {
+                if (strings[0].equals("true")) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
+                } else {
+                    return endWhileLine;
+                }
+            }
+        }
         return currentLine - 1;
     }
 

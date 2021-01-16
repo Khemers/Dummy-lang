@@ -44,8 +44,8 @@ if(q == 8)
         println(str)
         if(str == 'hi')
             println(str)
-            if(str == str)
-                printlf('whgwuioghwghuiwghwuigui')
+            if('hi' == 'hi')
+                println('whgwuioghwghuiwghwuigui')
             endif
         endif
     endif
@@ -73,3 +73,10 @@ while(qqq >= 0)
     endif
 endwhile
 println(qqq)
+boolean run = true
+if(run)
+    println('running')
+endif
+while(!run)
+    println(2)
+endwhile
