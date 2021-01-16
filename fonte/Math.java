@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Math {
 
     public static void sum(Variable var, String a, String b) {
@@ -51,40 +53,27 @@ public class Math {
             var.setValue(String.valueOf(Double.parseDouble(a) % Double.parseDouble(b)));}
     }
 
-    public boolean comparaIgual(Variable var, String a, String b) {
-        if (var.type.equals("int")) {
-            return (Integer.parseInt(a) == Integer.parseInt(b));
-        }
-        return false;
+    public static boolean comparaIgual(String a, String b) {
+        return (Arrays.equals(a.getBytes(), b.getBytes()));
     }
-    public boolean comparaMaior(Variable var, String a, String b) {
-        if (var.type.equals("int")) {
-            return (Integer.parseInt(a) > Integer.parseInt(b));
-        }
-        return false;
+
+    public static boolean comparaMaior(String a, String b) {
+        return (Double.parseDouble(a) > Double.parseDouble(b));
     }
-    public boolean comparaMenor(Variable var, String a, String b) {
-        if (var.type.equals("int")) {
-            return (Integer.parseInt(a) < Integer.parseInt(b));
-        }
-        return false;
+
+    public static boolean comparaMenor(String a, String b) {
+        return (Double.parseDouble(a) < Double.parseDouble(b));
     }
-    public boolean comparaMaiorIgual(Variable var, String a, String b) {
-        if (var.type.equals("int")) {
-            return (Integer.parseInt(a) >= Integer.parseInt(b));
-        }
-        return false;
+
+    public static boolean comparaMaiorIgual(String a, String b) {
+        return (Double.parseDouble(a) >= Double.parseDouble(b));
     }
-    public boolean comparaMenorIgual(Variable var, String a, String b) {
-        if (var.type.equals("int")) {
-            return (Integer.parseInt(a) <= Integer.parseInt(b));
-        }
-        return false;
+
+    public static boolean comparaMenorIgual(String a, String b) {
+        return (Double.parseDouble(a) <= Double.parseDouble(b));
     }
-    public boolean comparaDiferente(Variable var, String a, String b) {
-        if (var.type.equals("int")) {
-            return (Integer.parseInt(a) != Integer.parseInt(b));
-        }
-        return false;
+
+    public static boolean comparaDiferente(String a, String b) {
+        return (!Arrays.equals(a.getBytes(), b.getBytes()));
     }
 }

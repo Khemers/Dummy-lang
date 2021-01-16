@@ -80,3 +80,14 @@ endif
 while(!run)
     println(2)
 endwhile
+float y = 2.20
+if(2.20 != 2.2)
+    println('acertou 2.2')
+endif
+if(y == 2.2)
+    println('acertou y')
+endif
+int f = 1
+if(3 > f)
+    println('3 > 1')
+endif
