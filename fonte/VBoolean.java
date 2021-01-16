@@ -30,15 +30,7 @@ public class VBoolean extends Variable {
     public boolean ComparaDiferente(String Value) { return this.value != Boolean.parseBoolean(Value); }
 
     @Override
-    public Boolean getValue() {
-        return value;
-    }
-
-    @Override
     public Boolean sum(String i) { return this.value; }
-
-    @Override
-    void setValue(String Value) { this.value = Boolean.parseBoolean(Value); }
 
     @Override
     public Boolean sub(String i) { return this.value; }
@@ -52,4 +44,11 @@ public class VBoolean extends Variable {
     @Override
     public Boolean rest(String i) { return this.value; }
 
+    @Override
+    void setValue(String Value) { this.value = Boolean.parseBoolean(Value); }
+
+    @Override
+    public Boolean getValue() {
+        return value;
+    }
 }

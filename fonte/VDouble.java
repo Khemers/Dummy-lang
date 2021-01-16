@@ -31,15 +31,7 @@ public class VDouble extends Variable {
     public boolean ComparaDiferente(String Value) { return this.value != Double.parseDouble(Value); }
 
     @Override
-    public Double getValue() {
-        return value;
-    }
-
-    @Override
     public Object sum(String i) { return this.value + Double.parseDouble(i); }
-
-    @Override
-    void setValue(String Value) { this.value = Double.parseDouble(Value); }
 
     @Override
     public Object sub(String i) { return this.value - Double.parseDouble(i); }
@@ -52,4 +44,12 @@ public class VDouble extends Variable {
 
     @Override
     public Object rest(String i) { return this.value % Double.parseDouble(i); }
+
+    @Override
+    void setValue(String Value) { this.value = Double.parseDouble(Value); }
+
+    @Override
+    public Double getValue() {
+        return value;
+    }
 }

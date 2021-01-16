@@ -14,11 +14,7 @@ abstract class Variable {
 
     abstract boolean ComparaDiferente(String Value);
 
-    abstract Object getValue();
-
     abstract Object sum(String i);
-
-    abstract void setValue(String Value);
 
     abstract Object sub(String i);
 
@@ -27,5 +23,8 @@ abstract class Variable {
     abstract Object div(String i);
 
     abstract Object rest(String i);
-}
 
+    abstract void setValue(String Value);
+
+    abstract Object getValue();
+}

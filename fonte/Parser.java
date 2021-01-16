@@ -430,6 +430,12 @@ public class Parser {
                 } else {
                     return endWhileLine;
                 }
+            } else {
+                if (Math.comparaIgual(strings[0], strings[2])) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
+                } else {
+                    return endWhileLine;
+                }
             }
         } else if (line.contains("<=")) {
             strings = line.trim().split(" ");
@@ -448,6 +454,12 @@ public class Parser {
                 }
             } else if (Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[2]).ComparaMaiorIgual(strings[0])) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
+                } else {
+                    return endWhileLine;
+                }
+            }  else {
+                if (Math.comparaMenorIgual(strings[0], strings[2])) {
                     parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
                 } else {
                     return endWhileLine;
@@ -474,12 +486,46 @@ public class Parser {
                 } else {
                     return endWhileLine;
                 }
+            } else {
+                if (Math.comparaMaiorIgual(strings[0], strings[2])) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
+                } else {
+                    return endWhileLine;
+                }
             }
         } else if (line.contains(">")) {
             strings = line.trim().split(" ");
 
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[0]).ComparaMaior(Variables.get(strings[2]).getValue().toString())) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
+                } else {
+                    return endWhileLine;
+                }
+            } else if (Variables.containsKey(strings[0])) {
+                if (Variables.get(strings[0]).ComparaMaior(strings[2])) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
+                } else {
+                    return endWhileLine;
+                }
+            } else if (Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[2]).ComparaMenor(strings[0])) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
+                } else {
+                    return endWhileLine;
+                }
+            } else {
+                if (Math.comparaMaior(strings[0], strings[2])) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
+                } else {
+                    return endWhileLine;
+                }
+            }
+        } else if (line.contains("<")) {
+            strings = line.trim().split(" ");
+
+            if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMenor(Variables.get(strings[2]).getValue().toString())) {
                     parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
                 } else {
                     return endWhileLine;
@@ -496,24 +542,8 @@ public class Parser {
                 } else {
                     return endWhileLine;
                 }
-            }
-        } else if (line.contains("<")) {
-            strings = line.trim().split(" ");
-
-            if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[0]).ComparaMenor(Variables.get(strings[2]).getValue().toString())) {
-                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
-                } else {
-                    return endWhileLine;
-                }
-            } else if (Variables.containsKey(strings[0])) {
-                if (Variables.get(strings[0]).ComparaMaior(strings[2])) {
-                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
-                } else {
-                    return endWhileLine;
-                }
-            } else if (Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[2]).ComparaMenor(strings[0])) {
+            } else {
+                if (Math.comparaMenor(strings[0], strings[2])) {
                     parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
                 } else {
                     return endWhileLine;
@@ -536,6 +566,12 @@ public class Parser {
                 }
             } else if (Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[2]).ComparaDiferente(strings[0])) {
+                    parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
+                } else {
+                    return endWhileLine;
+                }
+            } else {
+                if (Math.comparaDiferente(strings[0], strings[2])) {
                     parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
                 } else {
                     return endWhileLine;

@@ -31,15 +31,7 @@ public class VInt extends Variable {
     public boolean ComparaDiferente(String Value) { return this.value != Integer.parseInt(Value); }
 
     @Override
-    public Integer getValue() {
-        return value;
-    }
-
-    @Override
     public Object sum(String i) { return this.value + Integer.parseInt(i); }
-
-    @Override
-    void setValue(String Value) { this.value = Integer.parseInt(Value); }
 
     @Override
     public Object sub(String i) { return this.value - Integer.parseInt(i); }
@@ -52,4 +44,12 @@ public class VInt extends Variable {
 
     @Override
     public Object rest(String i) { return this.value % Integer.parseInt(i); }
+
+    @Override
+    void setValue(String Value) { this.value = Integer.parseInt(Value); }
+
+    @Override
+    public Integer getValue() {
+        return value;
+    }
 }

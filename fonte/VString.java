@@ -31,15 +31,7 @@ public class VString extends Variable {
     public boolean ComparaDiferente(String Value) { return !this.value.equals(Value); }
 
     @Override
-    public String getValue() {
-        return this.value;
-    }
-
-    @Override
     public Object sum(String i) { return this.value + i; }
-
-    @Override
-    void setValue(String Value) { this.value = Value; }
 
     @Override
     public Object sub(String i) { return this.value; }
@@ -52,4 +44,12 @@ public class VString extends Variable {
 
     @Override
     public Object rest(String i) { return this.value; }
+
+    @Override
+    void setValue(String Value) { this.value = Value; }
+
+    @Override
+    public String getValue() {
+        return this.value;
+    }
 }
