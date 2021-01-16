@@ -23,15 +23,13 @@ public class Math {
         }
         else{
             if (var.type.equals("float")) {
-                var.setValue(String.valueOf(Float.parseFloat(a) + Float.parseFloat(b)));}
+                var.setValue(String.valueOf(Float.parseFloat(a) - Float.parseFloat(b)));}
             
             if (var.type.equals("double")) {
-                var.setValue(String.valueOf(Double.parseDouble(a) + Double.parseDouble(b)));}
+                var.setValue(String.valueOf(Double.parseDouble(a) - Double.parseDouble(b)));}
+            }
                 
-            if (var.type.equals("string")) {
-                 var.setValue(String.valueOf(a + b));}
-            } 
-    
+           
     }
 
     public static void mult(Variable var, String a, String b) {
@@ -40,14 +38,13 @@ public class Math {
         }
         else{
             if (var.type.equals("float")) {
-                var.setValue(String.valueOf(Float.parseFloat(a) + Float.parseFloat(b)));}
+                var.setValue(String.valueOf(Float.parseFloat(a) * Float.parseFloat(b)));}
             
             if (var.type.equals("double")) {
-                var.setValue(String.valueOf(Double.parseDouble(a) + Double.parseDouble(b)));}
+                var.setValue(String.valueOf(Double.parseDouble(a) * Double.parseDouble(b)));}
+            }
                 
-            if (var.type.equals("string")) {
-                 var.setValue(String.valueOf(a + b));}
-            } 
+        
 
     }
     public static void div(Variable var, String a, String b) {
@@ -56,13 +53,10 @@ public class Math {
         }
         else{
             if (var.type.equals("float")) {
-                var.setValue(String.valueOf(Float.parseFloat(a) + Float.parseFloat(b)));}
+                var.setValue(String.valueOf(Float.parseFloat(a) / Float.parseFloat(b)));}
             
             if (var.type.equals("double")) {
-                var.setValue(String.valueOf(Double.parseDouble(a) + Double.parseDouble(b)));}
-                
-            if (var.type.equals("string")) {
-                 var.setValue(String.valueOf(a + b));}
+                var.setValue(String.valueOf(Double.parseDouble(a) / Double.parseDouble(b)));}
             } 
 
     }
@@ -72,13 +66,11 @@ public class Math {
         }
         else{
             if (var.type.equals("float")) {
-                var.setValue(String.valueOf(Float.parseFloat(a) + Float.parseFloat(b)));}
+                var.setValue(String.valueOf(Float.parseFloat(a) % Float.parseFloat(b)));}
             
             if (var.type.equals("double")) {
-                var.setValue(String.valueOf(Double.parseDouble(a) + Double.parseDouble(b)));}
-                
-            if (var.type.equals("string")) {
-                 var.setValue(String.valueOf(a + b));}
+                var.setValue(String.valueOf(Double.parseDouble(a) % Double.parseDouble(b)));}
+            
             } 
 
     }
