@@ -3,7 +3,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-import java.util.stream.IntStream;
 
 import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;
@@ -108,12 +107,12 @@ public class Parser {
         }
 
         StringBuilder str = new StringBuilder();
-        for (int x = indexOfEqual + 1; x <= arr.length - 1; x++) {
-            str.append(arr[x]).append(" ");
+        str.append(arr[indexOfEqual + 1]);
+        for (int x = indexOfEqual + 2; x <= arr.length - 1; x++) {
+            str.append(" ").append(arr[x]);
         }
         String = new VString(arr[1], str.toString().replace("'", ""));
 
-        System.out.println(String.getValue());
         Variables.put(String.name, String);
     }
 
@@ -131,7 +130,7 @@ public class Parser {
     }
 
     private void foundPrint(String line) {
-        line = line.substring(line.indexOf("(") + 1).replace(')', Character.MIN_VALUE); // 6
+        line = line.substring(line.indexOf("(") + 1).replace(')', Character.MIN_VALUE);
         String[] strings = line.split(",");
 
         for (String string : strings) {
@@ -145,7 +144,7 @@ public class Parser {
     }
 
     private void foundPrintLn(String line) {
-        line = line.substring(line.indexOf("(") + 1).replace(')', Character.MIN_VALUE); // 8
+        line = line.substring(line.indexOf("(") + 1).replace(')', Character.MIN_VALUE);
         String[] strings = line.split(",");
 
         for (String string : strings) {
@@ -181,28 +180,24 @@ public class Parser {
                 countIf++;
             }
         }
-        //System.out.println(Arrays.toString(endIfLines));
 
         if (line.contains("==")) {
             strings = line.replace("'", "").trim().split(" ");
-            System.out.println(Arrays.toString(strings));
+
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[0]).ComparaIgual(Variables.get(strings[2]).getValue().toString())) {
-                    //System.out.println(Arrays.toString(Arrays.stream(lines, currentLine + 1, endIfLine + 1).toArray(String[]::new)));
                     parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
                 if (Variables.get(strings[0]).ComparaIgual(strings[2])) {
-                    //System.out.println(Arrays.toString(Arrays.stream(lines, currentLine + 1, endIfLine + 1).toArray(String[]::new)));
                     parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
                 }
             } else if (Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[2]).ComparaIgual(strings[0])) {
-                    //System.out.println(Arrays.toString(Arrays.stream(lines, currentLine + 1, endIfLine + 1).toArray(String[]::new)));
                     parseLines(Arrays.stream(lines, currentLine + 1, endIfLine).toArray(String[]::new));
                 } else {
                     return endIfLine;
@@ -319,7 +314,6 @@ public class Parser {
                 }
             }
         }
-        //System.out.println(endIfLine);
         return endIfLine;
     }
 
@@ -402,7 +396,6 @@ public class Parser {
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
 
-        System.out.println(input);
         Variables.get(line.trim()).setValue(input);
     }
     

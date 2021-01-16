@@ -44,11 +44,14 @@ if(q == 8)
         println(str)
         if(str == 'hi')
             println(str)
+            if (str == str)
+                printlf('whgwuioghwghuiwghwuigui')
+            endif
         endif
     endif
     println('fim')
 endif
-string teste = 'hello hi'
-if(teste == 'hello hi')
+string teste = 'hello'
+if(teste == 'hello')
     println('funciona')
 endif
