@@ -30,4 +30,10 @@ public class Math {
         }
 
     }
+    public boolean comparaIgual(Variable var, String a, String b) {
+        if (var.type.equals("int")) {
+            return (Integer.parseInt(a) == Integer.parseInt(b));
+        }
+        return false;
+    }
 }

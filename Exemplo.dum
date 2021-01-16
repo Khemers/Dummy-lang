@@ -42,13 +42,13 @@ if(q == 8)
         print('String Input: ')
         input(str)
         println(str)
-        if(str == str)
+        if(str == 'hi')
             println(str)
         endif
     endif
     println('fim')
 endif
-string teste = 'hello'
-if(teste == teste)
+string teste = 'hello hi'
+if(teste == 'hello hi')
     println('funciona')
 endif

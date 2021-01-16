@@ -113,6 +113,7 @@ public class Parser {
         }
         String = new VString(arr[1], str.toString().replace("'", ""));
 
+        System.out.println(String.getValue());
         Variables.put(String.name, String);
     }
 
@@ -183,8 +184,8 @@ public class Parser {
         //System.out.println(Arrays.toString(endIfLines));
 
         if (line.contains("==")) {
-            strings = line.trim().split(" ");
-            //System.out.println(Arrays.toString(strings));
+            strings = line.replace("'", "").trim().split(" ");
+            System.out.println(Arrays.toString(strings));
             if (Variables.containsKey(strings[0]) && Variables.containsKey(strings[2])) {
                 if (Variables.get(strings[0]).ComparaIgual(Variables.get(strings[2]).getValue().toString())) {
                     //System.out.println(Arrays.toString(Arrays.stream(lines, currentLine + 1, endIfLine + 1).toArray(String[]::new)));
@@ -401,6 +402,7 @@ public class Parser {
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
 
+        System.out.println(input);
         Variables.get(line.trim()).setValue(input);
     }
     
