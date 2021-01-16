@@ -36,4 +36,34 @@ public class Math {
         }
         return false;
     }
+    public boolean comparaMaior(Variable var, String a, String b) {
+        if (var.type.equals("int")) {
+            return (Integer.parseInt(a) > Integer.parseInt(b));
+        }
+        return false;
+    }
+    public boolean comparaMenor(Variable var, String a, String b) {
+        if (var.type.equals("int")) {
+            return (Integer.parseInt(a) < Integer.parseInt(b));
+        }
+        return false;
+    }
+    public boolean comparaMaiorIgual(Variable var, String a, String b) {
+        if (var.type.equals("int")) {
+            return (Integer.parseInt(a) >= Integer.parseInt(b));
+        }
+        return false;
+    }
+    public boolean comparaMenorIgual(Variable var, String a, String b) {
+        if (var.type.equals("int")) {
+            return (Integer.parseInt(a) <= Integer.parseInt(b));
+        }
+        return false;
+    }
+    public boolean comparaDiferente(Variable var, String a, String b) {
+        if (var.type.equals("int")) {
+            return (Integer.parseInt(a) != Integer.parseInt(b));
+        }
+        return false;
+    }
 }
