@@ -447,7 +447,7 @@ public class Parser {
                     return endWhileLine;
                 }
             } else if (Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[2]).ComparaMenorIgual(strings[0])) {
+                if (Variables.get(strings[2]).ComparaMaiorIgual(strings[0])) {
                     parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
                 } else {
                     return endWhileLine;
@@ -469,7 +469,7 @@ public class Parser {
                     return endWhileLine;
                 }
             } else if (Variables.containsKey(strings[2])) {
-                if (Variables.get(strings[2]).ComparaMaiorIgual(strings[0])) {
+                if (Variables.get(strings[2]).ComparaMenorIgual(strings[0])) {
                     parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
                 } else {
                     return endWhileLine;
@@ -485,7 +485,7 @@ public class Parser {
                     return endWhileLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
-                if (Variables.get(strings[0]).ComparaMaior(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMenor(strings[2])) {
                     parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
                 } else {
                     return endWhileLine;
@@ -507,7 +507,7 @@ public class Parser {
                     return endWhileLine;
                 }
             } else if (Variables.containsKey(strings[0])) {
-                if (Variables.get(strings[0]).ComparaMenor(strings[2])) {
+                if (Variables.get(strings[0]).ComparaMaior(strings[2])) {
                     parseLines(Arrays.stream(lines, currentLine + 1, endWhileLine).toArray(String[]::new));
                 } else {
                     return endWhileLine;
