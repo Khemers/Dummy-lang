@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Operations {
 
-    public static int parse(Map<String, Variable> Variables, String[] lines, String line, int currentLine, int endLine, String type) {
+    public static int parse(Map<String, Variable> Variables, String[] lines, String line, int currentLine, int endLine, String type) throws ErrorTreatment {
         String[] strings;
 
         if (line.contains("==")) {
