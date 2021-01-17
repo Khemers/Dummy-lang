@@ -13,14 +13,14 @@ public class Parser {
     public String[] codigoFonte;
     protected static Map<String, Variable> Variables;
 
-    Parser(StringBuilder codigoFonte) {
+    Parser(StringBuilder codigoFonte) throws ErrorTreatment {
         Variables = new HashMap<> ();
 
         setCodigoFonte(codigoFonte);
         parseLines(this.codigoFonte);
     }
 
-    public static void parseLines(String[] lines) {
+    public static void parseLines(String[] lines) throws ErrorTreatment {
         for (int i = 0; i < lines.length; i++) {
 
             if (Pattern.compile("^\\s*int\\s").matcher(lines[i]).find()) {
@@ -49,7 +49,7 @@ public class Parser {
         }
     }
 
-    private static void foundInt(String line) {
+    private static void foundInt(String line) throws ErrorTreatment {
         VInt Int; String[] arr;
 
         arr = line.substring(line.indexOf("i")).split(" ");
@@ -62,7 +62,7 @@ public class Parser {
         Variables.put(Int.name, Int);
     }
 
-    private static void foundFloat(String line) {
+    private static void foundFloat(String line) throws ErrorTreatment {
         VFloat Float; String[] arr;
 
         arr = line.substring(line.indexOf("f")).split(" ");
@@ -75,7 +75,7 @@ public class Parser {
         Variables.put(Float.name, Float);
     }
 
-    private static void foundDouble(String line) {
+    private static void foundDouble(String line) throws ErrorTreatment {
         VDouble Double; String[] arr;
 
         arr = line.substring(line.indexOf("d")).split(" ");
@@ -88,7 +88,7 @@ public class Parser {
         Variables.put(Double.name, Double);
     }
 
-    private static void foundString(String line) {
+    private static void foundString(String line) throws ErrorTreatment {
         VString String; String[] arr;
         int indexOfEqual = 0;
 
@@ -117,7 +117,7 @@ public class Parser {
         Variables.put(String.name, String);
     }
 
-    private static void foundBoolean(String line) {
+    private static void foundBoolean(String line) throws ErrorTreatment {
         VBoolean Boolean; String[] arr;
 
         arr = line.substring(line.indexOf("b")).split(" ");
@@ -130,7 +130,7 @@ public class Parser {
         Variables.put(Boolean.name, Boolean);
     }
 
-    private static void foundPrint(String line) {
+    private static void foundPrint(String line) throws ErrorTreatment {
         line = line.substring(line.indexOf("(") + 1).replace(')', Character.MIN_VALUE);
         String[] strings = line.split(",");
 
@@ -138,15 +138,24 @@ public class Parser {
 
             if (string.contains("'")) {
                 System.out.print(string.replace('\'', Character.MIN_VALUE));
-            } else if (Variables.containsKey(string.trim())) {
+            }
+            //if(line.indexOf(",") == -1){
+                //ErrorTreatment exception = new ErrorTreatment("Não foram encontradas variáveis para imprimir");
+                //throw exception;
+            //}
+            else if (Variables.containsKey(string.trim())) {
                 System.out.print(Variables.get(string.trim()).getValue());
             } else {
                 System.out.print(string);
             }
         }
+        //else {
+            //ErrorTreatment exception = new ErrorTreatment("Não foi possível imprimir");
+            //throw exception;
+        //}
     }
 
-    private static void foundPrintLn(String line) {
+    private static void foundPrintLn(String line) throws ErrorTreatment {
         line = line.substring(line.indexOf("(") + 1).replace(')', Character.MIN_VALUE);
         String[] strings = line.split(",");
 
@@ -162,13 +171,17 @@ public class Parser {
         }
     }
 
-    private static int foundIf(String[] lines, int currentLine) {
+    private static int foundIf(String[] lines, int currentLine) throws ErrorTreatment {
         String line; int endIfLine = 0;
         line = lines[currentLine].trim().substring(3).replace(')', Character.MIN_VALUE);
 
         int countIf = 0; int countEndIf = 0; int z = 0;
         int[] endIfLines = new int[lines.length];
         for (int i = currentLine; i < lines.length; i++) {
+            if(currentLine>= lines.length){
+                ErrorTreatment exception = new ErrorTreatment("Erro de sintaxe", "endif não foi encontrado");
+                throw exception;
+            }
             if (lines[i].contains("endif")) {
                 countEndIf++;
                 endIfLines[z] = i;
@@ -188,13 +201,17 @@ public class Parser {
         return Operations.parse(Variables, lines, line, currentLine, endIfLine, "if");
     }
 
-    private static int foundWhile(String[] lines, int currentLine) {
+    private static int foundWhile(String[] lines, int currentLine) throws ErrorTreatment {
         String line; int endWhileLine = 0;
         line = lines[currentLine].trim().substring(6).replace(')', Character.MIN_VALUE);
 
         int countWhile = 0; int countEndWhile = 0; int z = 0;
         int[] endWhileLines = new int[lines.length];
         for (int i = currentLine; i < lines.length; i++) {
+            if(currentLine >= lines.length){
+                ErrorTreatment exception = new ErrorTreatment("Erro de sintaxe", "endfor não foi encontrado");
+                throw exception;
+            }
             if (lines[i].contains("endwhile")) {
                 countEndWhile++;
                 endWhileLines[z] = i;
@@ -214,7 +231,7 @@ public class Parser {
         return Operations.parse(Variables, lines, line, currentLine, endWhileLine, "while");
     }
 
-    private static void foundAssignment(String line) {
+    private static void foundAssignment(String line) throws ErrorTreatment {
         String[] s;
 
         if (line.contains("=")) {
@@ -287,13 +304,18 @@ public class Parser {
         }
     }
 
-    private static void foundInput(String line) {
+    private static void foundInput(String line) throws ErrorTreatment {
         line = line.trim().substring(6).replace(')', Character.MIN_VALUE);
 
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
 
         Variables.get(line.trim()).setValue(input);
+
+        //else{
+            //ErrorTreatment exception = new ErrorTreatment("Variável não encontrada");
+            //throw exception;
+        //}
     }
     
     public void setCodigoFonte(StringBuilder codigoFonte) {
