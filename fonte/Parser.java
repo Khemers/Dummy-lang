@@ -167,7 +167,7 @@ public class Parser {
 
     private static int foundIf(String[] lines, int currentLine) {
         String line; int endIfLine = 0;
-        line = lines[currentLine].trim().substring(lines[currentLine].indexOf("(") + 1).replace(')', Character.MIN_VALUE);
+        line = lines[currentLine].trim().substring(3).replace(')', Character.MIN_VALUE);
 
         int countIf = 0; int countEndIf = 0; int z = 0;
         int[] endIfLines = new int[lines.length];
@@ -193,7 +193,7 @@ public class Parser {
 
     private static int foundWhile(String[] lines, int currentLine) {
         String line; int endWhileLine = 0;
-        line = lines[currentLine].trim().substring(lines[currentLine].indexOf("(") + 1).replace(')', Character.MIN_VALUE);
+        line = lines[currentLine].trim().substring(6).replace(')', Character.MIN_VALUE);
 
         int countWhile = 0; int countEndWhile = 0; int z = 0;
         int[] endWhileLines = new int[lines.length];
@@ -332,7 +332,7 @@ public class Parser {
 
     private static int foundFor(String[] lines, int currentLine) {
         String[] line; int endForLine = 0; int linePos;
-        line = lines[currentLine].trim().substring(lines[currentLine].indexOf("(") + 1).replace(')', Character.MIN_VALUE).split(";");
+        line = lines[currentLine].trim().substring(4).replace(')', Character.MIN_VALUE).split(";");
 
         int countFor = 0; int countEndFor = 0; int z = 0;
         int[] endForLines = new int[lines.length];
