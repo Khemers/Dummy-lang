@@ -96,3 +96,14 @@ while(i < 10)
     println(i)
     i = i + 1
 endwhile
+println('else')
+if(2 != 3)
+    println(2)
+endif else
+    if(2 > 3)
+        println('2>3')
+    endif else
+        println('2==2')
+    endelse
+    println(3)
+endelse

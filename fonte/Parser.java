@@ -317,6 +317,32 @@ public class Parser {
             //throw exception;
         //}
     }
+
+    public static int foundElse(String[] lines, int currentLine, boolean c) throws ErrorTreatment {
+        int endElseLine = 0;
+
+        int countElse = 0; int countEndElse = 0; int z = 0;
+        int[] endElseLines = new int[lines.length];
+        for (int i = currentLine; i < lines.length; i++) {
+            if (lines[i].contains("endelse")) {
+                countEndElse++;
+                endElseLines[z] = i;
+                z++;
+                if (countElse == 1) {
+                    endElseLine = i;
+                    break;
+                } else if ((countEndElse - countElse) == 0) {
+                    endElseLine = endElseLines[z - 1];
+                    break;
+                }
+            } else if (lines[i].contains("else")) {
+                countElse++;
+            }
+        }
+
+        if (c) { return endElseLine; }
+        else { return currentLine; }
+    }
     
     public void setCodigoFonte(StringBuilder codigoFonte) {
         this.codigoFonte = codigoFonte.toString().split("\n");
