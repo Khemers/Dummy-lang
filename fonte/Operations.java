@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Operations {
 
-    public static int parse(Map<String, Variable> Variables, String[] lines, String line, int currentLine, int endLine, String type) throws ErrorTreatment {
+    public static int parse(Map<String, Variable> Variables, String[] lines, String line, String line2, int currentLine, int endLine, String type) {
         String[] strings;
 
         if (line.contains("==")) {
@@ -15,6 +15,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -28,6 +30,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -41,6 +45,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -54,6 +60,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -71,6 +79,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -84,6 +94,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -97,6 +109,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -110,6 +124,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -127,6 +143,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -140,6 +158,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -153,6 +173,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -166,6 +188,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -183,6 +207,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -196,6 +222,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -209,6 +237,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -222,6 +252,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -239,6 +271,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -252,6 +286,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -265,6 +301,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -278,6 +316,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -295,6 +335,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -308,6 +350,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -321,6 +365,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -334,6 +380,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -351,6 +399,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -367,6 +417,8 @@ public class Operations {
 
                         if (type.equals("if") && lines[endLine].contains("else")) {
                             return Parser.foundElse(lines, endLine, true);
+                        } else if (type.equals("for")) {
+                            Parser.foundAssignment(line2);
                         }
                     } else {
                         if (type.equals("if") && lines[endLine].contains("else")) {
@@ -381,6 +433,8 @@ public class Operations {
 
                     if (type.equals("if") && lines[endLine].contains("else")) {
                         return Parser.foundElse(lines, endLine, true);
+                    } else if (type.equals("for")) {
+                        Parser.foundAssignment(line2);
                     }
                 } else {
                     if (type.equals("if") && lines[endLine].contains("else")) {
@@ -390,7 +444,7 @@ public class Operations {
                 }
             }
         }
-        if (type.equals("while")) {
+        if (type.equals("while") || type.equals("for")) {
             return currentLine - 1;
         }
         return endLine;

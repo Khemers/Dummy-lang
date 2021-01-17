@@ -13,14 +13,14 @@ public class Parser {
     public String[] codigoFonte;
     protected static Map<String, Variable> Variables;
 
-    Parser(StringBuilder codigoFonte) throws ErrorTreatment {
+    Parser(StringBuilder codigoFonte) {
         Variables = new HashMap<> ();
 
         setCodigoFonte(codigoFonte);
         parseLines(this.codigoFonte);
     }
 
-    public static void parseLines(String[] lines) throws ErrorTreatment {
+    public static void parseLines(String[] lines) {
         for (int i = 0; i < lines.length; i++) {
 
             if (Pattern.compile("^\\s*int\\s").matcher(lines[i]).find()) {
@@ -43,13 +43,15 @@ public class Parser {
                 i = foundIf(lines, i);
             } else if(Pattern.compile("^\\s*while[\\s]*[(]").matcher(lines[i]).find()) {
                 i = foundWhile(lines, i);
+            } else if(Pattern.compile("^\\s*for[\\s]*[(]").matcher(lines[i]).find()) {
+                i = foundFor(lines, i);
             } else {
                 foundAssignment(lines[i]);
             }
         }
     }
 
-    private static void foundInt(String line) throws ErrorTreatment {
+    private static void foundInt(String line) {
         VInt Int; String[] arr;
 
         arr = line.substring(line.indexOf("i")).split(" ");
@@ -62,7 +64,7 @@ public class Parser {
         Variables.put(Int.name, Int);
     }
 
-    private static void foundFloat(String line) throws ErrorTreatment {
+    private static void foundFloat(String line) {
         VFloat Float; String[] arr;
 
         arr = line.substring(line.indexOf("f")).split(" ");
@@ -75,7 +77,7 @@ public class Parser {
         Variables.put(Float.name, Float);
     }
 
-    private static void foundDouble(String line) throws ErrorTreatment {
+    private static void foundDouble(String line) {
         VDouble Double; String[] arr;
 
         arr = line.substring(line.indexOf("d")).split(" ");
@@ -88,7 +90,7 @@ public class Parser {
         Variables.put(Double.name, Double);
     }
 
-    private static void foundString(String line) throws ErrorTreatment {
+    private static void foundString(String line) {
         VString String; String[] arr;
         int indexOfEqual = 0;
 
@@ -117,7 +119,7 @@ public class Parser {
         Variables.put(String.name, String);
     }
 
-    private static void foundBoolean(String line) throws ErrorTreatment {
+    private static void foundBoolean(String line) {
         VBoolean Boolean; String[] arr;
 
         arr = line.substring(line.indexOf("b")).split(" ");
@@ -130,7 +132,7 @@ public class Parser {
         Variables.put(Boolean.name, Boolean);
     }
 
-    private static void foundPrint(String line) throws ErrorTreatment {
+    private static void foundPrint(String line) {
         line = line.substring(line.indexOf("(") + 1).replace(')', Character.MIN_VALUE);
         String[] strings = line.split(",");
 
@@ -139,23 +141,15 @@ public class Parser {
             if (string.contains("'")) {
                 System.out.print(string.replace('\'', Character.MIN_VALUE));
             }
-            //if(line.indexOf(",") == -1){
-                //ErrorTreatment exception = new ErrorTreatment("Não foram encontradas variáveis para imprimir");
-                //throw exception;
-            //}
             else if (Variables.containsKey(string.trim())) {
                 System.out.print(Variables.get(string.trim()).getValue());
             } else {
                 System.out.print(string);
             }
         }
-        //else {
-            //ErrorTreatment exception = new ErrorTreatment("Não foi possível imprimir");
-            //throw exception;
-        //}
     }
 
-    private static void foundPrintLn(String line) throws ErrorTreatment {
+    private static void foundPrintLn(String line) {
         line = line.substring(line.indexOf("(") + 1).replace(')', Character.MIN_VALUE);
         String[] strings = line.split(",");
 
@@ -171,17 +165,13 @@ public class Parser {
         }
     }
 
-    private static int foundIf(String[] lines, int currentLine) throws ErrorTreatment {
+    private static int foundIf(String[] lines, int currentLine) {
         String line; int endIfLine = 0;
         line = lines[currentLine].trim().substring(3).replace(')', Character.MIN_VALUE);
 
         int countIf = 0; int countEndIf = 0; int z = 0;
         int[] endIfLines = new int[lines.length];
         for (int i = currentLine; i < lines.length; i++) {
-            if(currentLine>= lines.length){
-                ErrorTreatment exception = new ErrorTreatment("Erro de sintaxe", "endif não foi encontrado");
-                throw exception;
-            }
             if (lines[i].contains("endif")) {
                 countEndIf++;
                 endIfLines[z] = i;
@@ -198,20 +188,16 @@ public class Parser {
             }
         }
 
-        return Operations.parse(Variables, lines, line, currentLine, endIfLine, "if");
+        return Operations.parse(Variables, lines, line, "", currentLine, endIfLine, "if");
     }
 
-    private static int foundWhile(String[] lines, int currentLine) throws ErrorTreatment {
+    private static int foundWhile(String[] lines, int currentLine) {
         String line; int endWhileLine = 0;
         line = lines[currentLine].trim().substring(6).replace(')', Character.MIN_VALUE);
 
         int countWhile = 0; int countEndWhile = 0; int z = 0;
         int[] endWhileLines = new int[lines.length];
         for (int i = currentLine; i < lines.length; i++) {
-            if(currentLine >= lines.length){
-                ErrorTreatment exception = new ErrorTreatment("Erro de sintaxe", "endfor não foi encontrado");
-                throw exception;
-            }
             if (lines[i].contains("endwhile")) {
                 countEndWhile++;
                 endWhileLines[z] = i;
@@ -228,10 +214,10 @@ public class Parser {
             }
         }
 
-        return Operations.parse(Variables, lines, line, currentLine, endWhileLine, "while");
+        return Operations.parse(Variables, lines, line, "", currentLine, endWhileLine, "while");
     }
 
-    private static void foundAssignment(String line) throws ErrorTreatment {
+    public static void foundAssignment(String line) {
         String[] s;
 
         if (line.contains("=")) {
@@ -304,7 +290,7 @@ public class Parser {
         }
     }
 
-    private static void foundInput(String line) throws ErrorTreatment {
+    private static void foundInput(String line) {
         line = line.trim().substring(6).replace(')', Character.MIN_VALUE);
 
         Scanner scan = new Scanner(System.in);
@@ -318,7 +304,7 @@ public class Parser {
         //}
     }
 
-    public static int foundElse(String[] lines, int currentLine, boolean c) throws ErrorTreatment {
+    public static int foundElse(String[] lines, int currentLine, boolean c) {
         int endElseLine = 0;
 
         int countElse = 0; int countEndElse = 0; int z = 0;
@@ -342,6 +328,34 @@ public class Parser {
 
         if (c) { return endElseLine; }
         else { return currentLine; }
+    }
+
+    private static int foundFor(String[] lines, int currentLine) {
+        String[] line; int endForLine = 0; int linePos;
+        line = lines[currentLine].trim().substring(4).replace(')', Character.MIN_VALUE).split(";");
+
+        int countFor = 0; int countEndFor = 0; int z = 0;
+        int[] endForLines = new int[lines.length];
+        for (int i = currentLine; i < lines.length; i++) {
+            if (lines[i].contains("endfor")) {
+                countEndFor++;
+                endForLines[z] = i;
+                z++;
+                if (countFor == 1) {
+                    endForLine = i;
+                    break;
+                } else if ((countEndFor - countFor) == 0) {
+                    endForLine = endForLines[z - 1];
+                    break;
+                }
+            } else if (lines[i].contains("for")) {
+                countFor++;
+            }
+        }
+
+        linePos = Operations.parse(Variables, lines, line[0], line[1], currentLine, endForLine, "for");
+
+        return linePos;
     }
     
     public void setCodigoFonte(StringBuilder codigoFonte) {

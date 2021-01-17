@@ -1,5 +1,5 @@
 public class ErrorTreatment extends Exception {
-    private String message;
+    private final String message;
     private String cause;
     private String description;
 
@@ -9,9 +9,10 @@ public class ErrorTreatment extends Exception {
         this.description = description;
     }
 
-    ErrorTreatment(String message, String cause) {
+    ErrorTreatment(String message, String cause, int line) {
         this.cause = cause;
         this.message = message;
+        printException(line);
     }
 
     ErrorTreatment(String message) {
@@ -30,4 +31,3 @@ public class ErrorTreatment extends Exception {
         System.out.println("*****");
     }
 }
-
