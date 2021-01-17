@@ -1,0 +1,15 @@
+int i 
+int j
+i = 0
+j = i
+while( i < 3 )
+    if( i == 0 )
+        print('Zero')
+    else
+        print('Outro')
+    i++
+if (i == 3)
+    if( j == 0 )
+        print('Ok')
+    else
+        print('Erro')
