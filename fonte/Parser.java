@@ -298,10 +298,6 @@ public class Parser {
 
         Variables.get(line.trim()).setValue(input);
 
-        //else{
-            //ErrorTreatment exception = new ErrorTreatment("Variável não encontrada");
-            //throw exception;
-        //}
     }
 
     public static int foundElse(String[] lines, int currentLine, boolean c) {
