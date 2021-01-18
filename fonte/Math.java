@@ -7,7 +7,7 @@ public class Math {
             case "int" -> var.setValue(String.valueOf(Integer.parseInt(a) + Integer.parseInt(b)));
             case "float" -> var.setValue(String.valueOf(Float.parseFloat(a) + Float.parseFloat(b)));
             case "double" -> var.setValue(String.valueOf(Double.parseDouble(a) + Double.parseDouble(b)));
-            case "string" -> var.setValue(a + b);
+            case "str" -> var.setValue(a + b);
         }
     }
 
