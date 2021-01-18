@@ -1,21 +1,18 @@
-int i 
+int i = 0
 int j
-i = 0
 j = i
-while( i < 3 )
-    if( i == 0 )
-        print('Zero')
-    endif
-    else
-        print('Outro')
+while(i < 3)
+    if(i == 0)
+        println('Zero')
+    endif else
+        println('Outro')
     endelse
-    i++
+    i = i + 1
 endwhile
 if(i == 3)
-    if( j == 0 )
-        print('Ok')
-    endif
-    else
-        print('Erro')
+    if(j == 0)
+        println('Ok')
+    endif else
+        println('Erro')
     endelse
 endif
