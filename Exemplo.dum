@@ -34,7 +34,7 @@ endif
 println('oi')
 q = 4 + 4
 if(q == 8)
-    println('java eh uma merda')
+    println('java java')
     int m = 4
     m = 3
     if(3 == m)
